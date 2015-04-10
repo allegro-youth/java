@@ -1,10 +1,8 @@
-package hello.controller;
+package pl.allegro.youth.controller;
 
-import com.fasterxml.jackson.annotation.JacksonInject;
-import hello.model.Average;
-import hello.model.Greeting;
-import hello.model.Marks;
-import hello.service.AverageMarks;
+import pl.allegro.youth.model.Average;
+import pl.allegro.youth.model.Marks;
+import pl.allegro.youth.service.AverageMarks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

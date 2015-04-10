@@ -1,4 +1,4 @@
-package hello.model;
+package pl.allegro.youth.model;
 
 public class Average {
     private Integer average;

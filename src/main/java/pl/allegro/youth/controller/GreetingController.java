@@ -1,9 +1,8 @@
-package hello.controller;
+package pl.allegro.youth.controller;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-import hello.model.Greeting;
-import hello.model.Marks;
+import pl.allegro.youth.model.Greeting;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

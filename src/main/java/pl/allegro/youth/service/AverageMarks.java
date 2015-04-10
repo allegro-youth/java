@@ -1,7 +1,7 @@
-package hello.service;
+package pl.allegro.youth.service;
 
-import hello.model.Average;
-import hello.model.Marks;
+import pl.allegro.youth.model.Average;
+import pl.allegro.youth.model.Marks;
 import org.springframework.stereotype.Component;
 
 @Component
