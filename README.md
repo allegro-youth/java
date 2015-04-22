@@ -14,5 +14,11 @@ Zadania znajdziecie w komentarza w klasie PeopleController oraz w klasie testowe
 
 # Co jak zrobie?
 Wrzuć to co zrobisz do repozytorium :)
-Jak?? `git add -A && git commit -m "testy - moje imie i nazwisko" && git push origin testy-TWOJ_LOGIN`
+Jak?? 
+
+```
+git add -A 
+git commit -m "testy - moje imie i nazwisko"
+git push origin testy-TWOJ_LOGIN
+```
 Oczywiscie wpisując swoje imie i nazwisko i TWOJ_LOGIN
