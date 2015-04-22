@@ -22,12 +22,31 @@ public class PeopleController {
 
 	public People getPeopleCapitalizeName(String name) {
 		// TODO: Spraw by zmienna name zaczynała się zawsze wielką literą
-		return null;
+		char []tablica=name.toCharArray();
+		String result = "";
+		int index=0;
+		for (char c:tablica) {
+			if (index==0) result=result+String.valueOf(c).toUpperCase();
+			else{
+				result =result+String.valueOf(c);
+			}
+		index++;
+		}
+		name=result;
+
+		return new People(name);
 	}
 
 	public People getPeopleInvertedName(String name) {
 		// TODO: Spraw by zmienna name została wypisana od tyłu
-		return null;
+		char []tablica=name.toCharArray();
+		String odwrocone="";
+		for (int i = tablica.length-1; i >=0 ; i--) {
+			odwrocone=odwrocone+tablica[i];
+		}
+		name=odwrocone;
+
+		return new People(name);
 	}
 
 	public People getPeopleUppercaseName(String name) {
