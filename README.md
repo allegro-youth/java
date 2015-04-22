@@ -1,2 +1,9 @@
+# Testy w Java assertJ
+Na tym branchu znajdziecie zadania, które pomogą Wam zrozumieć założenie testów w Javie.
 
-curl -X POST -d '{ "polish":"1", "english": "2", "math":"2", "history":"5" }' -H "Content-Type:application/json" http://localhost:8080/lessons | python -m json.tool
+# Jak to uruchomić?
+```
+git clone https://github.com/allegro-youth/java.git
+git checkout testy
+git pull origin testy
+```

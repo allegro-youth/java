@@ -17,3 +17,5 @@ include 'services:webservice'
 */
 
 rootProject.name = 'Projekt allegro'
+include 'zadanie1'
+

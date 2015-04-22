@@ -14,7 +14,7 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
 jar {
-    baseName = 'gs-rest-service'
+    baseName = 'allegro-youth-testy'
     version =  '0.1.0'
 }
 
@@ -27,8 +27,9 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
+    compile "org.springframework.boot:spring-boot-starter-web"
     testCompile("junit:junit")
+    testCompile 'org.assertj:assertj-core:3.0.0'
 }
 
 task wrapper(type: Wrapper) {
