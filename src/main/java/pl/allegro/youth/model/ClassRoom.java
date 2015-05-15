@@ -30,4 +30,13 @@ public class ClassRoom {
     public void setNr(Integer nr) {
         this.nr = nr;
     }
+
+    public ClassRoom(Integer id, String building, Integer nr) {
+        this.id = id;
+        this.building = building;
+        this.nr = nr;
+    }
+
+    public ClassRoom() {
+    }
 }
