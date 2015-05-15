@@ -14,11 +14,8 @@ public class Controller {
 
     @RequestMapping("classroom")
         public ClassRoom classRoom(){
-            ClassRoom classRoom = new ClassRoom();
-        classRoom.setBuilding("Budynek główny");
-        classRoom.setId(1);
-        classRoom.setNr(5);
-            return classRoom;
+
+            return new ClassRoom(1,"Budynek główny",5);
         }
 
 }
