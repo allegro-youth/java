@@ -13,10 +13,7 @@ public class Controller {
     }
     @RequestMapping ("classroom")
     public ClassRoom classRoom (){
-            ClassRoom classRoom = new ClassRoom();
-            classRoom.setBuilding ("Budynek glowny");
-            classRoom.setId (1);
-            classRoom.setNr(1);
+            ClassRoom classRoom = new ClassRoom(1,"Budynek główny",1);
         return classRoom;
     }
 }
