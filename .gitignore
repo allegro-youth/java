@@ -8,6 +8,8 @@
 *.war
 *.ear
 
+.gradle/
+
 build
 *.iml
 *.ipr
