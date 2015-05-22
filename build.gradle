@@ -9,7 +9,6 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
@@ -28,6 +27,7 @@ targetCompatibility = 1.8
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile ("org.springframework.data:spring-data-mongodb:1.7.0.RELEASE")
     testCompile("junit:junit")
 }
 

@@ -1,10 +1,23 @@
 package pl.allegro.youth.model;
 
+import java.util.List;
+
 public class Teacher {
 
     private Integer id;
     private String firstName;
     private String lastName;
+    private String shortName;
+
+    public Teacher() {
+    }
+
+    public Teacher(Integer id, String firstName, String lastName, String shortName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.shortName = shortName;
+    }
 
     public Integer getId() {
         return id;
@@ -30,11 +43,14 @@ public class Teacher {
         this.lastName = lastName;
     }
 
-    public Teacher(Integer id, String firstName, String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public String getShortName() {
+        return shortName;
     }
+
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
+
 
     @Override
     public String toString() {
@@ -42,28 +58,8 @@ public class Teacher {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", shortName='" + shortName + '\'' +
                 '}';
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Teacher teacher = (Teacher) o;
-
-        if (!firstName.equals(teacher.firstName)) return false;
-        if (!id.equals(teacher.id)) return false;
-        if (!lastName.equals(teacher.lastName)) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + firstName.hashCode();
-        result = 31 * result + lastName.hashCode();
-        return result;
-    }
 }
+

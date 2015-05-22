@@ -3,8 +3,8 @@ package pl.allegro.youth.model;
 
 public class Class {
     private int id;
-    private String classname;
-    private String classinfo;
+    private Integer number;
+    private char type;
 
     public int getId() {
         return id;
@@ -14,19 +14,28 @@ public class Class {
         this.id = id;
     }
 
-    public String getClassname() {
-        return classname;
+    public Integer getNumber() {
+        return number;
     }
 
-    public void setClassname(String classname) {
-        this.classname = classname;
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
-    public String getClassinfo() {
-        return classinfo;
+    public char getType() {
+        return type;
     }
 
-    public void setClassinfo(String classinfo) {
-        this.classinfo = classinfo;
+    public void setType(char type) {
+        this.type = type;
+    }
+
+    public Class(int id, Integer number, char type) {
+        this.id = id;
+        this.number = number;
+        this.type = type;
+    }
+
+    public Class() {
     }
 }
