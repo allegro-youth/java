@@ -30,7 +30,7 @@ public class Start implements CommandLineRunner {
 
         lessonRepository.deleteAll();
 
-      /*  hourRepository.deleteAll();
+        hourRepository.deleteAll();
 
         List<Hour> hours = new ArrayList<>();
         hours.add(new Hour(1, 815, 900));
@@ -42,12 +42,12 @@ public class Start implements CommandLineRunner {
         hours.add(new Hour(7, 1325, 1410));
         hours.add(new Hour(8, 1430, 1515));
         hours.add(new Hour(9, 1520, 1605));
-        hourRepository.save(hours);*/
+        hourRepository.save(hours);
 
 
         Teacher teacher = new Teacher(1, "Andrzej", "Gac", "AG");
         Class aClass = new Class(1, 4, 'K');
-        ClassRoom classRoom = new ClassRoom(1, "Budynek g³ówny", 80);
+        ClassRoom classRoom = new ClassRoom(1, "Budynek gï¿½ï¿½wny", 80);
 
         lessonRepository.save(new Lesson(1, "Matematyka", "Mat", teacher, aClass, classRoom, hourRepository.findOne(1)));
         lessonRepository.save(new Lesson(2, "Informatyka", "Inf", teacher, aClass, classRoom, hourRepository.findOne(2)));

@@ -4,13 +4,11 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ControllerTest {
+public class TeacherControllerTest {
 
     @Test
     public void testShouldHello() throws Exception {
-        Controller controller = new Controller();
-        String hello = controller.hello();
+        TeacherController teacherController = new TeacherController();
 
-        assertThat(hello).isEqualTo("hello");
     }
 }
