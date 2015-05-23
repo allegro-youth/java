@@ -9,8 +9,9 @@
 *.ear
 
 .gradle/
+gradle/
 
-build
+build/
 *.iml
 *.ipr
 *.iws
