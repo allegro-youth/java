@@ -28,10 +28,8 @@ targetCompatibility = 1.8
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile ("org.springframework.data:spring-data-mongodb:1.7.0.RELEASE")
-<<<<<<< Updated upstream
-=======
     testCompile 'org.assertj:assertj-core:2.0.0'
->>>>>>> Stashed changes
+
     testCompile("junit:junit")
 }
 
