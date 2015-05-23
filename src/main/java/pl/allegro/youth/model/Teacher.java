@@ -1,15 +1,22 @@
 package pl.allegro.youth.model;
 
-import java.util.List;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 public class Teacher {
 
+    @Id
     private Integer id;
     private String firstName;
     private String lastName;
     private String shortName;
 
     public Teacher() {
+    }
+
+    public Teacher(Integer id) {
+        this.id = id;
     }
 
     public Teacher(Integer id, String firstName, String lastName, String shortName) {
