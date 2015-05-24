@@ -7,10 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import pl.allegro.youth.model.*;
 import pl.allegro.youth.model.Class;
 
-import pl.allegro.youth.repository.ClassRepository;
-import pl.allegro.youth.repository.HourRepository;
-import pl.allegro.youth.repository.LessonRepository;
-import pl.allegro.youth.repository.TeacherRepository;
+import pl.allegro.youth.repository.*;
 import pl.allegro.youth.service.LessonService;
 
 
@@ -35,6 +32,9 @@ public class Start implements CommandLineRunner {
     @Autowired
     private LessonService lessonService;
 
+    @Autowired
+    private MessageRepository messageRepository;
+
 
     public static void main(String[] args) {
         SpringApplication.run(Start.class, args);
@@ -43,7 +43,7 @@ public class Start implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-
+        messageRepository.deleteAll();
 
         hourRepository.deleteAll();
         List<Hour> hours = new ArrayList<>();
