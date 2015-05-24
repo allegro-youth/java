@@ -9,6 +9,8 @@ import pl.allegro.youth.model.Hour;
 import pl.allegro.youth.repository.HourRepository;
 import pl.allegro.youth.service.HourService;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/hour")
@@ -21,6 +23,11 @@ public class HourController {
     @Autowired
     private HourService hourService;
 
+
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Hour> getHours(){
+        return hourRepository.findAll();
+    }
 
     @RequestMapping(value = "{hourNumber}", method = RequestMethod.GET)
     public Hour getHour(@PathVariable Integer hourNumber){

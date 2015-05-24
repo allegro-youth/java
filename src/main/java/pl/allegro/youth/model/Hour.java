@@ -39,6 +39,10 @@ public class Hour {
     public Hour() {
     }
 
+    public Hour(int number) {
+        this.number = number;
+    }
+
     public Hour(int number, int start, int end) {
         this.number = number;
         this.start = start;

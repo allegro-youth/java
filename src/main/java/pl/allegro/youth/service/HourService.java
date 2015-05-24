@@ -15,12 +15,16 @@ public class HourService {
     private HourRepository hourRepository;
 
     public Hour getCurrentHour(){
-       // Integer time = LocalDateTime.now().getHour() * 100 + LocalDateTime.now().getMinute();
-        Integer time = 906;
+        Integer time = LocalDateTime.now().getHour() * 100 + LocalDateTime.now().getMinute();
+       // Integer time = 906;
         return  hourRepository.findByStartBeforeAndEndAfter(time, time);
     }
 
     public Hour getNextHour(){
-        return hourRepository.findOne(getCurrentHour().getNumber()+1);
+        Hour currentHour = getCurrentHour();
+        if(currentHour != null){
+            return hourRepository.findOne(currentHour.getNumber()+1);
+        }
+        return null;
     }
 }

@@ -39,6 +39,10 @@ public class ClassRoom {
     public ClassRoom() {
     }
 
+    public ClassRoom(Integer id) {
+        this.id = id;
+    }
+
     public ClassRoom(Integer id, String building, Integer number) {
         this.id = id;
         this.building = building;

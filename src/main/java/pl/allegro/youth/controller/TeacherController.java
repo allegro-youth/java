@@ -38,4 +38,10 @@ public class TeacherController {
         teacherRepository.save(teacher);
     }
 
+    @RequestMapping(value = "/{teacherId}", method = RequestMethod.DELETE)
+    public void removeTeacher(@PathVariable Integer teacherId){
+        Teacher teacher = getTeacher(teacherId);
+        teacherRepository.delete(teacher);
+    }
+
 }

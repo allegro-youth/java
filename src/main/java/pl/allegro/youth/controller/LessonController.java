@@ -49,15 +49,16 @@ public class LessonController {
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.CREATED)
     public void addLesson(@RequestBody Lesson lesson) {
-
-
         lessonRepository.save(lesson);
     }
+
 
     @RequestMapping(value = "{lessonId}", method = RequestMethod.POST)
     public void updateLesson(@RequestBody Lesson lesson, @PathVariable Integer lessonId) {
         lessonRepository.save(lesson);
     }
+
+
 
     @RequestMapping(value = "/current", method = RequestMethod.GET)
     public List<Lesson> getCurrentLessons() {
@@ -70,9 +71,6 @@ public class LessonController {
         return lessonService.getNextLessons();
     }
 
-/*    @RequestMapping("/current/{classId}")
-    public Lesson getCurrentLessonsWithClass(@PathVariable Integer classId) {
-        return lessonRepository.findByHourStartAfterAndHourEndBeforeAndAClassId(830, 830, classId);
-    }*/
+
 
 }

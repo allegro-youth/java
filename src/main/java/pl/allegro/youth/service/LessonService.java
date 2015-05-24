@@ -82,7 +82,7 @@ public class LessonService {
         lesson.setTeacher(teacherController.getTeacher(lesson.getTeacher().getId()));
         lesson.setaClass(classController.getClass(lesson.getaClass().getId()));
         lesson.setClassRoom(classRoomController.getClassRoom(lesson.getClassRoom().getId()));
-        lesson.setHour(hourController.getHour(lesson.getHour().getNumber()));
+       // lesson.setHour(hourController.getHour(lesson.getHour().getNumber()));
         return lesson;
     }
 

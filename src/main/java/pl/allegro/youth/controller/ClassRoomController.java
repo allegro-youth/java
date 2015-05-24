@@ -3,6 +3,7 @@ package pl.allegro.youth.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import pl.allegro.youth.exception.ClassRoomNotFoundException;
 import pl.allegro.youth.exception.HourNotFoundException;
 import pl.allegro.youth.model.ClassRoom;
 import pl.allegro.youth.repository.ClassRoomRepository;
@@ -25,7 +26,7 @@ public class ClassRoomController {
     public ClassRoom getClassRoom(@PathVariable Integer classRoomId){
         ClassRoom classRoom = classRoomRepository.findOne(classRoomId);
         if (classRoom == null){
-            throw new HourNotFoundException(classRoomId);
+            throw new ClassRoomNotFoundException(classRoomId);
         }
 
         return classRoom;
