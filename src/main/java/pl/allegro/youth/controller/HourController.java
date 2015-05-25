@@ -39,6 +39,13 @@ public class HourController {
         return hour;
     }
 
+    @RequestMapping(value = "/{hourId}", method = RequestMethod.DELETE)
+    public void removeHour(@PathVariable Integer hourId){
+        Hour hour = getHour(hourId);
+        hourRepository.delete(hour);
+
+    }
+
     @RequestMapping(value = "/current", method = RequestMethod.GET)
     public Hour getCurrentHour(){
         return hourService.getCurrentHour();
