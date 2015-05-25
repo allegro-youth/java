@@ -43,5 +43,10 @@ public class ClassRoomController {
         classRoomRepository.save(classRoom);
     }
 
+    @RequestMapping(value = "/{classroomId}", method = RequestMethod.DELETE)
+    public void removeClass(@PathVariable Integer classroomId) {
+        ClassRoom classRoom = getClassRoom(classroomId);
+        classRoomRepository.delete(classRoom);
+    }
 
 }
