@@ -28,6 +28,7 @@ import java.util.List;
 import static com.jayway.restassured.RestAssured.expect;
 import static com.jayway.restassured.RestAssured.given;
 import static com.jayway.restassured.RestAssured.when;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 
@@ -153,6 +154,20 @@ public class LessonControllerTest {
                 .body(equalTo(gson.toJson(lessons)))
                 .when()
                 .get("/lesson");
+    }
+
+    @Test
+    public void shouldRemoveLessonById() throws Exception {
+        Lesson lesson = lessons.get(0);
+        expect()
+                .statusCode(HttpStatus.SC_OK)
+                .body(equalTo(""))
+                .when()
+                .delete("/lesson/{hourId}", lesson.getId());
+
+        Lesson removeLesson = lessonRepository.findOne(lesson.getId());
+        assertThat(removeLesson).isNull();
+
     }
 
     @Test

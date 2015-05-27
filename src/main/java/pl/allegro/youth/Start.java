@@ -49,8 +49,7 @@ public class Start implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-/*
-        messageRepository.deleteAll();
+      /*  messageRepository.deleteAll();
 
         hourRepository.deleteAll();
         List<Hour> hours = new ArrayList<>();
@@ -130,7 +129,6 @@ public class Start implements CommandLineRunner {
         lessonRepository.save(new Lesson(16, "Informatyka", "Inf",  teacherRepository.findOne(1), classRepository.findOne(4), classRoomRepository.findOne(1), hourRepository.findOne(3)));
         lessonRepository.save(new Lesson(17, "J. angielski", "Jan", teacherRepository.findOne(2), classRepository.findOne(5), classRoomRepository.findOne(1), hourRepository.findOne(3)));
         lessonRepository.save(new Lesson(18, "Matematyka", "Mat",   teacherRepository.findOne(3), classRepository.findOne(6), classRoomRepository.findOne(1), hourRepository.findOne(3)));
-
 */
         /*
         // fetch all lessons

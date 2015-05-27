@@ -58,13 +58,23 @@ public class LessonController {
         lessonRepository.save(lesson);
     }
 
-
+    @RequestMapping(value = "/{lessonId}", method = RequestMethod.DELETE)
+    public void removeLesson(@PathVariable Integer lessonId){
+        Lesson lesson = getLesson(lessonId);
+        lessonRepository.delete(lessonId);
+    }
 
     @RequestMapping(value = "/current", method = RequestMethod.GET)
     public List<Lesson> getCurrentLessons() {
         return lessonService.getCurrentLessons();
     }
 
+
+    @RequestMapping(value = "/currentAndNext", method = RequestMethod.GET)
+    public List<List<Lesson>> getCurrentAndNextLessons(){
+        return lessonService.getCurrentAndNextLessons();
+
+    }
 
     @RequestMapping(value = "/next", method = RequestMethod.GET)
     public List<Lesson> getNextLessons() {

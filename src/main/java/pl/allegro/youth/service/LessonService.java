@@ -37,16 +37,30 @@ public class LessonService {
     }
 
 
-
-
     public List<Lesson> getCurrentLessons() {
         Hour hour = hourService.getCurrentHour();
 
-        if (hour != null) {
-            return getLessonsByHour(hour);
+        return getLessonsByHour(hour);
+
+
+        // return null;
+    }
+
+    public List<List<Lesson>> getCurrentAndNextLessons() {
+        Hour currentHour = hourService.getCurrentHour();
+        Hour nextHour = hourService.getNextHour();
+        List<List<Lesson>> lessonss = new ArrayList<>();
+        List<Lesson> lessons;
+        List<Class> classes = classRepository.findAll();
+
+        for (Class aClass : classes) {
+            lessons = new ArrayList<>();
+            lessons.add(getLessonByHourAndClass(currentHour, aClass));
+            lessons.add(getLessonByHourAndClass(nextHour,aClass));
+            lessonss.add(lessons);
         }
 
-        return null;
+        return lessonss;
     }
 
     public List<Lesson> getNextLessons() {
@@ -59,16 +73,23 @@ public class LessonService {
         return null;
     }
 
-    private List<Lesson> getLessonsByHour(Hour hour){
+    private List<Lesson> getLessonsByHour(Hour hour) {
         List<Lesson> lessons = new ArrayList<>();
         List<Class> classes = classRepository.findAll();
 
         for (Class aClass : classes) {
-            Lesson lesson = lessonRepository.findByHourNumberAndAClassId(hour.getNumber(), aClass.getId());
-            if (lesson != null) lessons.add(getOtherLessonObjects(lesson));
+            lessons.add(getLessonByHourAndClass(hour, aClass));
         }
 
         return lessons;
+    }
+
+    private Lesson getLessonByHourAndClass(Hour hour, Class aClass) {
+        Lesson lesson = null;
+        if (hour != null) lesson = lessonRepository.findByHourNumberAndAClassId(hour.getNumber(), aClass.getId());
+        if (lesson != null) lesson = getOtherLessonObjects(lesson);
+        else lesson = new Lesson(aClass);
+        return lesson;
     }
 
     public List<Lesson> getOtherLessonsObjects(List<Lesson> lessons) {
@@ -82,7 +103,7 @@ public class LessonService {
         lesson.setTeacher(teacherController.getTeacher(lesson.getTeacher().getId()));
         lesson.setaClass(classController.getClass(lesson.getaClass().getId()));
         lesson.setClassRoom(classRoomController.getClassRoom(lesson.getClassRoom().getId()));
-       // lesson.setHour(hourController.getHour(lesson.getHour().getNumber()));
+        // lesson.setHour(hourController.getHour(lesson.getHour().getNumber()));
         return lesson;
     }
 
