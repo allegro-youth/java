@@ -11,15 +11,14 @@ public class Message {
 
     @Id
     private String id;
-    private Date addDate;
-    private Date endDate;
+    private Long addDate;
+    private Long endDate;
     private String content;
 
     public Message() {
     }
 
-    public Message(String id, Date addDate, Date endDate, String content) {
-        this.id = id;
+    public Message(Long addDate, Long endDate, String content) {
         this.addDate = addDate;
         this.endDate = endDate;
         this.content = content;
@@ -33,19 +32,19 @@ public class Message {
         this.id = id;
     }
 
-    public Date getAddDate() {
+    public Long getAddDate() {
         return addDate;
     }
 
-    public void setAddDate(Date addDate) {
+    public void setAddDate(Long addDate) {
         this.addDate = addDate;
     }
 
-    public Date getEndDate() {
+    public Long getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(Long endDate) {
         this.endDate = endDate;
     }
 
@@ -83,7 +82,7 @@ public class Message {
     @Override
     public String toString() {
         return "Message{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", addDate=" + addDate +
                 ", endDate=" + endDate +
                 ", content='" + content + '\'' +

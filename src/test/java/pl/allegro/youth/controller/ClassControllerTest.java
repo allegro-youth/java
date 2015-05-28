@@ -8,6 +8,7 @@ import org.apache.http.HttpStatus;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Matchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.IntegrationTest;
@@ -119,7 +120,24 @@ public class ClassControllerTest {
         Class removeClass = classRepository.findOne(aClass.getId());
 
         assertThat(removeClass).isNull();
+    }
 
 
+    @Test
+    public void shouldUpdateClassById() throws Exception {
+        Class aClass = classes.get(1);
+        aClass.setType('c');
+
+        expect()
+                .statusCode(HttpStatus.SC_OK)
+                .body(equalTo(""))
+                .given()
+                .contentType(ContentType.JSON)
+                .body(aClass)
+                .when()
+                .post("/class/{classId}", aClass.getId());
+
+        Class updateClass = classRepository.findOne(aClass.getId());
+        assertThat(updateClass).isEqualTo(aClass);
     }
 }

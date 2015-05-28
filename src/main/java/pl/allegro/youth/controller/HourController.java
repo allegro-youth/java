@@ -62,10 +62,13 @@ public class HourController {
         hourRepository.save(hour);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public void updateHour(@RequestBody Hour hour){
-        hourRepository.save(hour);
-
+    @RequestMapping(value = "/{hourId}",method = RequestMethod.POST)
+    public void updateHour(@RequestBody Hour hour, @PathVariable Integer hourId){
+        Hour oldHour = getHour(hourId);
+        oldHour.setNumber(hour.getNumber());
+        oldHour.setStart(hour.getStart());
+        oldHour.setEnd(hour.getEnd());
+        hourRepository.save(oldHour);
     }
 
 

@@ -44,4 +44,14 @@ public class TeacherController {
         teacherRepository.delete(teacher);
     }
 
+    @RequestMapping(value = "/{teacherId}", method = RequestMethod.POST)
+    public void updateTeacher(@RequestBody Teacher teacher, @PathVariable Integer teacherId){
+        Teacher oldTeacher = getTeacher(teacherId);
+        oldTeacher.setId(teacher.getId());
+        oldTeacher.setFirstName(teacher.getFirstName());
+        oldTeacher.setLastName(teacher.getLastName());
+        oldTeacher.setShortName(teacher.getShortName());
+        teacherRepository.save(oldTeacher);
+    }
+
 }

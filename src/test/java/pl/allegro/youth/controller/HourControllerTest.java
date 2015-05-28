@@ -57,7 +57,7 @@ public class HourControllerTest {
         hours.add(new Hour(7, 1325, 1410));
         hours.add(new Hour(8, 1430, 1515));
         hours.add(new Hour(9, 1520, 1605));
-        if(time > 1605 || time < 815) {
+        if (time > 1605 || time < 815) {
             hours.add(new Hour(10, (time - 20), (time + 20)));
             hours.add(new Hour(11, (time + 30), (time + 70)));
         }
@@ -65,8 +65,8 @@ public class HourControllerTest {
 
 
         currentHour = new Hour();
-        for (Hour hour : hours){
-            if(hour.getStart() < time && hour.getEnd() > time){
+        for (Hour hour : hours) {
+            if (hour.getStart() < time && hour.getEnd() > time) {
                 currentHour = hour;
                 break;
             }
@@ -140,6 +140,24 @@ public class HourControllerTest {
     }
 
     @Test
+    public void shouldUpdateHourById() throws Exception {
+
+        Hour hour = hours.get(0);
+        hour.setEnd(901);
+        expect()
+                .statusCode(HttpStatus.SC_OK)
+                .body(equalTo(""))
+                .given()
+                .contentType(ContentType.JSON)
+                .body(hour)
+                .when()
+                .post("/hour/{hourId}", hour.getNumber());
+
+        Hour updateHour = hourRepository.findOne(hour.getNumber());
+        assertThat(updateHour).isEqualTo(hour);
+    }
+
+    @Test
     public void shouldReturnCurrentHour() throws Exception {
         expect()
                 .statusCode(HttpStatus.SC_OK)
@@ -150,7 +168,7 @@ public class HourControllerTest {
 
     @Test
     public void shouldReturnNextHour() throws Exception {
-        Hour nextHour = hourRepository.findOne(currentHour.getNumber()+1);
+        Hour nextHour = hourRepository.findOne(currentHour.getNumber() + 1);
         expect()
                 .statusCode(HttpStatus.SC_OK)
                 .body(equalTo(gson.toJson(nextHour)))

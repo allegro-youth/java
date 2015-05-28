@@ -37,9 +37,13 @@ public class ClassController {
         classRepository.save(aClass);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public void updateClass(@RequestBody Class aClass){
-        classRepository.save(aClass);
+    @RequestMapping(value = "/{classId}", method = RequestMethod.POST)
+    public void updateClass(@RequestBody Class aClass, @PathVariable Integer classId){
+        Class oldClass = getClass(classId);
+        oldClass.setId(aClass.getId());
+        oldClass.setType(aClass.getType());
+        oldClass.setNumber(aClass.getNumber());
+        classRepository.save(oldClass);
     }
 
     @RequestMapping(value = "/{classId}", method = RequestMethod.DELETE)

@@ -44,10 +44,10 @@ public class ClassRoomControllerTest {
     public void setUp() throws Exception {
         classRoomRepository.deleteAll();
         classRooms = new ArrayList<>();
-        classRooms.add(new ClassRoom(1, "Budynek g≥Ûwny", 80));
-        classRooms.add(new ClassRoom(2, "Budynek g≥Ûwny", 70));
-        classRooms.add(new ClassRoom(3, "Budynek g≥Ûwny", 77));
-        classRooms.add(new ClassRoom(4, "Budynek g≥Ûwny", 15));
+        classRooms.add(new ClassRoom(1, "CKP", 80));
+        classRooms.add(new ClassRoom(2, "Budynek g≈Ç√≥wny", 70));
+        classRooms.add(new ClassRoom(3, "Budynek g≈Ç√≥wny", 77));
+        classRooms.add(new ClassRoom(4, "Budynek g≈Ç√≥wny", 15));
         classRooms.add(new ClassRoom(5, "CKP", 7));
         classRoomRepository.save(classRooms);
 
@@ -115,5 +115,23 @@ public class ClassRoomControllerTest {
         ClassRoom removeClassroom = classRoomRepository.findOne(classRoom.getId());
         assertThat(removeClassroom).isNull();
 
+    }
+
+    @Test
+    public void shouldUpdateClassRoomById() throws Exception {
+        ClassRoom classRoom = classRooms.get(0);
+        classRoom.setNumber(40);
+
+        expect()
+                .statusCode(HttpStatus.SC_OK)
+                .body(equalTo(""))
+                .given()
+                .contentType(ContentType.JSON)
+                .body(classRoom)
+                .when()
+                .post("/classroom/{classroomId}", classRoom.getId());
+
+        ClassRoom updateClassRoom = classRoomRepository.findOne(classRoom.getId());
+        assertThat(updateClassRoom).isEqualTo(classRoom);
     }
 }

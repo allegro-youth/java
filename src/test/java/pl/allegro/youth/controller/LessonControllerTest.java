@@ -2,9 +2,12 @@ package pl.allegro.youth.controller;
 
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
+import jdk.nashorn.internal.runtime.regexp.joni.Matcher;
 import org.apache.http.HttpStatus;
+import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,8 +43,6 @@ public class LessonControllerTest {
 
     private List<Lesson> lessons;
     private Gson gson;
-    private List<Lesson> currentLessons;
-    private List<Lesson> nextLessons;
 
     @Autowired
     private LessonRepository lessonRepository;
@@ -64,9 +65,8 @@ public class LessonControllerTest {
 
     @Before
     public void setUp() throws Exception {
+        Integer time = LocalDateTime.now().getHour() * 100 + LocalDateTime.now().getMinute();
         lessons = new ArrayList<>();
-        currentLessons = new ArrayList<>();
-        nextLessons = new ArrayList<>();
 
         lessonRepository.deleteAll();
         teacherRepository.deleteAll();
@@ -74,38 +74,26 @@ public class LessonControllerTest {
         classRoomRepository.deleteAll();
         hourRepository.deleteAll();
 
-        Teacher teacher = new Teacher(1, "Andrzej", "Gac", "AG");
-        teacherRepository.save(teacher);
+        teacherRepository.save(new Teacher(1, "Andrzej", "Gac", "AG"));
 
-        ClassRoom classRoom = new ClassRoom(1, "Budynek g³ówny", 80);
-        classRoomRepository.save(classRoom);
+        classRoomRepository.save(new ClassRoom(1, "CKP", 80));
 
-        Integer time = LocalDateTime.now().getHour() * 100 + LocalDateTime.now().getMinute();
-        Hour hour = new Hour(1, (time - 20), (time + 20));
-        hourRepository.save(hour);
+        hourRepository.save(new Hour(1, (time - 20), (time + 20)));
+        hourRepository.save( new Hour(2, (time + 30), (time + 70)));
 
+        classRepository.save( new Class(1, 2, 'k'));
+        classRepository.save(new Class(2, 3, 'h'));
 
-        Class aClass = new Class(1, 2, 'k');
-        classRepository.save(aClass);
-        Lesson lesson = new Lesson(1, "Matematyka", "Mat", teacher, aClass, classRoom, hour);
-        lessons.add(lesson);
-        currentLessons.add(lesson);
-        aClass = new Class(2, 3, 'h');
-        classRepository.save(aClass);
-        lesson = new Lesson(2, "J. Angielski", "ang", teacher, aClass, classRoom, hour);
-        lessons.add(lesson);
-        currentLessons.add(lesson);
-
-        hour = new Hour(2, (time + 30), (time + 70));
-        hourRepository.save(hour);
-        lesson = new Lesson(3, "J. Polski", "Pol", teacher, aClass, classRoom, hour);
-        lessons.add(lesson);
-        nextLessons.add(lesson);
-
-
-        gson = new Gson();
-        RestAssured.port = port;
+        lessons.add(new Lesson(1, "Matematyka", "Mat", teacherRepository.findOne(1), classRepository.findOne(1), classRoomRepository.findOne(1), hourRepository.findOne(1)));
+        lessons.add(new Lesson(2, "J. Angielski", "ang",teacherRepository.findOne(1), classRepository.findOne(2), classRoomRepository.findOne(1), hourRepository.findOne(1)));
+        lessons.add(new Lesson(3, "J. Polski", "Pol", teacherRepository.findOne(1), classRepository.findOne(1), classRoomRepository.findOne(1), hourRepository.findOne(2)));
         lessonRepository.save(lessons);
+
+
+        gson = new GsonBuilder()
+                .serializeNulls()
+                .create();
+        RestAssured.port = port;
     }
 
     @After
@@ -167,11 +155,33 @@ public class LessonControllerTest {
 
         Lesson removeLesson = lessonRepository.findOne(lesson.getId());
         assertThat(removeLesson).isNull();
+    }
+
+    @Test
+    public void shouldUpdateLessonById() throws Exception {
+        Lesson lesson = lessonRepository.findOne(1);
+        lesson.setName("Fizyka");
+
+        expect()
+                .statusCode(HttpStatus.SC_OK)
+                .body(equalTo(""))
+                .given()
+                .contentType(ContentType.JSON)
+                .body(lesson)
+                .when()
+                .post("/lesson/{lessonId}", lesson.getId());
+
+/*        Lesson updateLesson = lessonRepository.findOne(lesson.getId());
+        assertThat(updateLesson).isEqualTo(lesson);*/
 
     }
 
     @Test
     public void shouldReturnCurrentLessonsList() throws Exception {
+        List<Lesson> currentLessons = new ArrayList<>();
+        currentLessons.add(lessons.get(0));
+        currentLessons.add(lessons.get(1));
+
         expect()
                 .body(equalTo(gson.toJson(currentLessons)))
                 .when()
@@ -182,12 +192,16 @@ public class LessonControllerTest {
 
     @Test
     public void shouldReturnNextLessonsList() throws Exception {
+
+        List<Lesson> nextLessons = new ArrayList<>();
+        nextLessons.add(lessons.get(2));
+        nextLessons.add(new Lesson(classRepository.findOne(2)));
         expect()
+                .statusCode(HttpStatus.SC_OK)
+                .contentType(ContentType.JSON)
                 .body(equalTo(gson.toJson(nextLessons)))
                 .when()
-                .get("/lesson/next")
-                .then()
-                .statusCode(HttpStatus.SC_OK);
+                .get("/lesson/next");
 
     }
 }

@@ -2,6 +2,7 @@ package pl.allegro.youth.controller;
 
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
@@ -16,16 +17,17 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import pl.allegro.youth.Start;
-import pl.allegro.youth.model.Teacher;
+import pl.allegro.youth.model.*;
+import pl.allegro.youth.model.Class;
 import pl.allegro.youth.repository.TeacherRepository;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.jayway.restassured.RestAssured.expect;
 import static com.jayway.restassured.RestAssured.given;
 import static com.jayway.restassured.RestAssured.when;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 
@@ -47,14 +49,16 @@ public class TeacherControllerTest {
     @Before
     public void setUp() throws Exception {
         teacherRepository.deleteAll();
-        Teacher first = new Teacher(1, "Andrzej", "Gac", "AG");
-        Teacher secend = new Teacher(2, "Renata", "Gac", "RG");
-        teachers = new ArrayList<>();
-        teachers.add(first);
-        teachers.add(secend);
 
+        teachers = new ArrayList<>();
+        teachers.add(new Teacher(1, "Andrzej", "Gac", "AG"));
+        teachers.add(new Teacher(2, "Renata", "Gac", "RG"));
         teacherRepository.save(teachers);
-        gson = new Gson();
+
+
+        gson = new GsonBuilder()
+                .serializeNulls()
+                .create();
         RestAssured.port = port;
     }
 
@@ -110,8 +114,26 @@ public class TeacherControllerTest {
                 .statusCode(HttpStatus.SC_OK);
 
         Teacher teacher = teacherRepository.findOne(teachers.get(1).getId());
-
         assertThat(teacher).isNull();
+    }
+
+
+    @Test
+    public void shouldUpdateTeacherById() throws Exception {
+        Teacher teacher = teachers.get(0);
+        teacher.setFirstName("Tomasz");
+
+        expect()
+                .statusCode(HttpStatus.SC_OK)
+                .body(equalTo(""))
+                .given()
+                .contentType(ContentType.JSON)
+                .body(teacher)
+                .when()
+                .post("/teacher/{teacherId}", teacher.getId());
+
+      /*  Teacher updateTeacher = teacherRepository.findOne(teacher.getId());
+        assertThat(updateTeacher).isEqualTo(teacher);*/
 
     }
 }

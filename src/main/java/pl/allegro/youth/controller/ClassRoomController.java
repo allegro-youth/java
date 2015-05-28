@@ -38,9 +38,13 @@ public class ClassRoomController {
         classRoomRepository.save(classRoom);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public void updateClassRoom(@RequestBody ClassRoom classRoom){
-        classRoomRepository.save(classRoom);
+    @RequestMapping(value = "/{classroomId}", method = RequestMethod.POST)
+    public void updateClassRoom(@RequestBody ClassRoom classRoom, @PathVariable Integer classroomId){
+        ClassRoom oldClassroom = classRoomRepository.findOne(classroomId);
+        oldClassroom.setId(classRoom.getId());
+        oldClassroom.setNumber(classRoom.getNumber());
+        oldClassroom.setBuilding(classRoom.getBuilding());
+        classRoomRepository.save(oldClassroom);
     }
 
     @RequestMapping(value = "/{classroomId}", method = RequestMethod.DELETE)
