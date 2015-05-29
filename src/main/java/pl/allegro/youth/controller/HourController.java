@@ -20,6 +20,7 @@ public class HourController {
         return hourRepository.findAll();
     }
 
+
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.CREATED)
     public Integer addHour(@RequestBody Hour hour){

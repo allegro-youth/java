@@ -21,6 +21,9 @@ public class Start implements CommandLineRunner {
     @Autowired
     private HourRepository hourRepository;
 
+    @Autowired
+    private HourRepository classRepository;
+
     public static void main(String[] args) {
         SpringApplication.run(Start.class, args);
     }
@@ -31,6 +34,8 @@ public class Start implements CommandLineRunner {
         lessonRepository.deleteAll();
 
         hourRepository.deleteAll();
+
+        classRepository.deleteAll();
 
         List<Hour> hours = new ArrayList<>();
         hours.add(new Hour(1, 815, 900));
@@ -44,14 +49,13 @@ public class Start implements CommandLineRunner {
         hours.add(new Hour(9, 1520, 1605));
         hourRepository.save(hours);
 
+        List <Class> classess = new ArrayList<>();
+        classess.add(new Class(1,1,'H'));
+        classRepository.save(classess);
 
         Teacher teacher = new Teacher(1, "Andrzej", "Gac", "AG");
-        Class aClass = new Class(1, 4, 'K');
         ClassRoom classRoom = new ClassRoom(1, "Budynek g��wny", 80);
-
-        lessonRepository.save(new Lesson(1, "Matematyka", "Mat", teacher, aClass, classRoom, hourRepository.findOne(1)));
-        lessonRepository.save(new Lesson(2, "Informatyka", "Inf", teacher, aClass, classRoom, hourRepository.findOne(2)));
-
+        ClassRoom classRoom1 = new ClassRoom(2, "Budynek g��wny", 82);
 
         // fetch all customers
         System.out.println("Lessons found with findAll():");
