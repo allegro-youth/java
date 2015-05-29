@@ -8,15 +8,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class ClassRoom {
 
     @Id
-    private Integer id;
+    private String id;
     private String building;
     private Integer number;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -39,12 +39,11 @@ public class ClassRoom {
     public ClassRoom() {
     }
 
-    public ClassRoom(Integer id) {
+    public ClassRoom(String id) {
         this.id = id;
     }
 
-    public ClassRoom(Integer id, String building, Integer number) {
-        this.id = id;
+    public ClassRoom(String building, Integer number) {
         this.building = building;
         this.number = number;
     }
@@ -73,12 +72,9 @@ public class ClassRoom {
     @Override
     public String toString() {
         return "ClassRoom{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", building='" + building + '\'' +
                 ", number=" + number +
                 '}';
     }
-
-
-
 }

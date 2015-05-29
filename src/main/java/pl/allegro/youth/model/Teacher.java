@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Teacher {
 
     @Id
-    private Integer id;
+    private String id;
     private String firstName;
     private String lastName;
     private String shortName;
@@ -15,22 +15,17 @@ public class Teacher {
     public Teacher() {
     }
 
-    public Teacher(Integer id) {
-        this.id = id;
-    }
-
-    public Teacher(Integer id, String firstName, String lastName, String shortName) {
-        this.id = id;
+    public Teacher(String shortName, String firstName, String lastName) {
+        this.shortName = shortName;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.shortName = shortName;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -58,6 +53,28 @@ public class Teacher {
         this.shortName = shortName;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Teacher teacher = (Teacher) o;
+
+        if (!id.equals(teacher.id)) return false;
+        if (!firstName.equals(teacher.firstName)) return false;
+        if (!lastName.equals(teacher.lastName)) return false;
+        return shortName.equals(teacher.shortName);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + firstName.hashCode();
+        result = 31 * result + lastName.hashCode();
+        result = 31 * result + shortName.hashCode();
+        return result;
+    }
 
     @Override
     public String toString() {

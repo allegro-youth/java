@@ -22,7 +22,7 @@ public class TeacherController {
     }
 
     @RequestMapping(value = "{teacherId}", method = RequestMethod.GET)
-    public Teacher getTeacher(@PathVariable Integer teacherId) {
+    public Teacher getTeacher(@PathVariable String teacherId) {
 
         Teacher teacher = teacherRepository.findOne(teacherId);
         if (teacher == null) {
@@ -39,13 +39,13 @@ public class TeacherController {
     }
 
     @RequestMapping(value = "/{teacherId}", method = RequestMethod.DELETE)
-    public void removeTeacher(@PathVariable Integer teacherId){
+    public void removeTeacher(@PathVariable String teacherId){
         Teacher teacher = getTeacher(teacherId);
         teacherRepository.delete(teacher);
     }
 
     @RequestMapping(value = "/{teacherId}", method = RequestMethod.POST)
-    public void updateTeacher(@RequestBody Teacher teacher, @PathVariable Integer teacherId){
+    public void updateTeacher(@RequestBody Teacher teacher, @PathVariable String teacherId){
         Teacher oldTeacher = getTeacher(teacherId);
         oldTeacher.setId(teacher.getId());
         oldTeacher.setFirstName(teacher.getFirstName());

@@ -49,7 +49,7 @@ public class Start implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-      /*  messageRepository.deleteAll();
+        messageRepository.deleteAll();
 
         hourRepository.deleteAll();
         List<Hour> hours = new ArrayList<>();
@@ -66,10 +66,10 @@ public class Start implements CommandLineRunner {
 
         teacherRepository.deleteAll();
         List<Teacher> teachers = new ArrayList<>();
-        teachers.add(new Teacher(1, "Andrzej", "Gac", "AG"));
-        teachers.add(new Teacher(2, "Renata", "Gac", "RG"));
-        teachers.add(new Teacher(3, "Violetta", "Kalka", "VK"));
-        teachers.add(new Teacher(4, "Teresa", "Golińska", "TG"));
+        teachers.add(new Teacher("Andrzej", "Gac", "AG"));
+        teachers.add(new Teacher("Renata", "Gac", "RG"));
+        teachers.add(new Teacher("Violetta", "Kalka", "VK"));
+        teachers.add(new Teacher("Teresa", "Golińska", "TG"));
         teacherRepository.save(teachers);
 
         classRepository.deleteAll();
@@ -105,31 +105,31 @@ public class Start implements CommandLineRunner {
         classRepository.save(classes);
 
         classRoomRepository.deleteAll();
-        ClassRoom classRoom = new ClassRoom(1, "Budynek główny", 80);
+        ClassRoom classRoom = new ClassRoom("Budynek główny", 80);
         classRoomRepository.save(classRoom);
 
         lessonRepository.deleteAll();
-        lessonRepository.save(new Lesson(1, "Matematyka", "Mat",    teacherRepository.findOne(1), classRepository.findOne(1), classRoomRepository.findOne(1), hourRepository.findOne(1)));
-        lessonRepository.save(new Lesson(2, "Informatyka", "Inf",   teacherRepository.findOne(2), classRepository.findOne(2), classRoomRepository.findOne(1), hourRepository.findOne(1)));
-        lessonRepository.save(new Lesson(3, "J. polski", "Jpo",     teacherRepository.findOne(3), classRepository.findOne(3), classRoomRepository.findOne(1), hourRepository.findOne(1)));
-        lessonRepository.save(new Lesson(4, "J. niemiecki", "Jni",  teacherRepository.findOne(4), classRepository.findOne(4), classRoomRepository.findOne(1), hourRepository.findOne(1)));
-        lessonRepository.save(new Lesson(5, "J. angielski", "Jan",  teacherRepository.findOne(1), classRepository.findOne(5), classRoomRepository.findOne(1), hourRepository.findOne(1)));
-        lessonRepository.save(new Lesson(6, "Historia", "His",      teacherRepository.findOne(2), classRepository.findOne(6), classRoomRepository.findOne(1), hourRepository.findOne(1)));
+        lessonRepository.save(new Lesson(1, "Matematyka", "Mat",    teachers.get(1), classRepository.findOne(1), classRoom, hourRepository.findOne(1)));
+        lessonRepository.save(new Lesson(2, "Informatyka", "Inf",   teachers.get(2), classRepository.findOne(2), classRoom, hourRepository.findOne(1)));
+        lessonRepository.save(new Lesson(3, "J. polski", "Jpo",     teachers.get(3), classRepository.findOne(3), classRoom, hourRepository.findOne(1)));
+        lessonRepository.save(new Lesson(4, "J. niemiecki", "Jni",  teachers.get(0), classRepository.findOne(4), classRoom, hourRepository.findOne(1)));
+        lessonRepository.save(new Lesson(5, "J. angielski", "Jan",  teachers.get(1), classRepository.findOne(5), classRoom, hourRepository.findOne(1)));
+        lessonRepository.save(new Lesson(6, "Historia", "His",      teachers.get(2), classRepository.findOne(6), classRoom, hourRepository.findOne(1)));
 
-        lessonRepository.save(new Lesson(7, "J. niemiecki", "Jni",  teacherRepository.findOne(3), classRepository.findOne(1), classRoomRepository.findOne(1), hourRepository.findOne(2)));
-        lessonRepository.save(new Lesson(8, "Historia", "His",      teacherRepository.findOne(4), classRepository.findOne(2), classRoomRepository.findOne(1), hourRepository.findOne(2)));
-        lessonRepository.save(new Lesson(9, "J. angielski", "Jan",  teacherRepository.findOne(1), classRepository.findOne(3), classRoomRepository.findOne(1), hourRepository.findOne(2)));
-        lessonRepository.save(new Lesson(10, "Matematyka", "Mat",   teacherRepository.findOne(2), classRepository.findOne(4), classRoomRepository.findOne(1), hourRepository.findOne(2)));
-        lessonRepository.save(new Lesson(11, "J. polski", "Jpo",    teacherRepository.findOne(3), classRepository.findOne(5), classRoomRepository.findOne(1), hourRepository.findOne(2)));
-        lessonRepository.save(new Lesson(12, "Informatyka", "Inf",  teacherRepository.findOne(4), classRepository.findOne(6), classRoomRepository.findOne(1), hourRepository.findOne(2)));
+        lessonRepository.save(new Lesson(7, "J. niemiecki", "Jni",  teachers.get(3), classRepository.findOne(1), classRoom, hourRepository.findOne(2)));
+        lessonRepository.save(new Lesson(8, "Historia", "His",      teachers.get(0), classRepository.findOne(2), classRoom, hourRepository.findOne(2)));
+        lessonRepository.save(new Lesson(9, "J. angielski", "Jan",  teachers.get(1), classRepository.findOne(3), classRoom, hourRepository.findOne(2)));
+        lessonRepository.save(new Lesson(10, "Matematyka", "Mat",   teachers.get(2), classRepository.findOne(4), classRoom, hourRepository.findOne(2)));
+        lessonRepository.save(new Lesson(11, "J. polski", "Jpo",    teachers.get(3), classRepository.findOne(5), classRoom, hourRepository.findOne(2)));
+        lessonRepository.save(new Lesson(12, "Informatyka", "Inf",  teachers.get(0), classRepository.findOne(6), classRoom, hourRepository.findOne(2)));
 
-        lessonRepository.save(new Lesson(13, "J. polski", "Jpo",    teacherRepository.findOne(2), classRepository.findOne(1), classRoomRepository.findOne(1), hourRepository.findOne(3)));
-        lessonRepository.save(new Lesson(14, "Historia", "His",     teacherRepository.findOne(3), classRepository.findOne(2), classRoomRepository.findOne(1), hourRepository.findOne(3)));
-        lessonRepository.save(new Lesson(15, "J. niemiecki", "Jni", teacherRepository.findOne(4), classRepository.findOne(3), classRoomRepository.findOne(1), hourRepository.findOne(3)));
-        lessonRepository.save(new Lesson(16, "Informatyka", "Inf",  teacherRepository.findOne(1), classRepository.findOne(4), classRoomRepository.findOne(1), hourRepository.findOne(3)));
-        lessonRepository.save(new Lesson(17, "J. angielski", "Jan", teacherRepository.findOne(2), classRepository.findOne(5), classRoomRepository.findOne(1), hourRepository.findOne(3)));
-        lessonRepository.save(new Lesson(18, "Matematyka", "Mat",   teacherRepository.findOne(3), classRepository.findOne(6), classRoomRepository.findOne(1), hourRepository.findOne(3)));
-*/
+        lessonRepository.save(new Lesson(13, "J. polski", "Jpo",    teachers.get(2), classRepository.findOne(1), classRoom, hourRepository.findOne(3)));
+        lessonRepository.save(new Lesson(14, "Historia", "His",     teachers.get(3), classRepository.findOne(2), classRoom, hourRepository.findOne(3)));
+        lessonRepository.save(new Lesson(15, "J. niemiecki", "Jni", teachers.get(0), classRepository.findOne(3), classRoom, hourRepository.findOne(3)));
+        lessonRepository.save(new Lesson(16, "Informatyka", "Inf",  teachers.get(1), classRepository.findOne(4), classRoom, hourRepository.findOne(3)));
+        lessonRepository.save(new Lesson(17, "J. angielski", "Jan", teachers.get(2), classRepository.findOne(5), classRoom, hourRepository.findOne(3)));
+        lessonRepository.save(new Lesson(18, "Matematyka", "Mat",   teachers.get(3), classRepository.findOne(6), classRoom, hourRepository.findOne(3)));
+
         /*
         // fetch all lessons
         System.out.println("Lessons found with findAll():");

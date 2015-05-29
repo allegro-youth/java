@@ -18,7 +18,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import pl.allegro.youth.Start;
 import pl.allegro.youth.model.*;
-import pl.allegro.youth.model.Class;
 import pl.allegro.youth.repository.TeacherRepository;
 
 import java.util.ArrayList;
@@ -51,8 +50,8 @@ public class TeacherControllerTest {
         teacherRepository.deleteAll();
 
         teachers = new ArrayList<>();
-        teachers.add(new Teacher(1, "Andrzej", "Gac", "AG"));
-        teachers.add(new Teacher(2, "Renata", "Gac", "RG"));
+        teachers.add(new Teacher("Andrzej", "Gac", "AG"));
+        teachers.add(new Teacher("Renata", "Gac", "RG"));
         teacherRepository.save(teachers);
 
 
@@ -69,7 +68,7 @@ public class TeacherControllerTest {
 
     @Test
     public void shouldAddNewTeacher() throws Exception {
-        Teacher teacher = new Teacher(1, "Andrzej", "Gac", "AG");
+        Teacher teacher = new Teacher("Andrzej", "Gac", "AG");
         given()
                 .contentType(ContentType.JSON)
                 .body(teacher)
@@ -132,8 +131,8 @@ public class TeacherControllerTest {
                 .when()
                 .post("/teacher/{teacherId}", teacher.getId());
 
-      /*  Teacher updateTeacher = teacherRepository.findOne(teacher.getId());
-        assertThat(updateTeacher).isEqualTo(teacher);*/
+        Teacher updateTeacher = teacherRepository.findOne(teacher.getId());
+        assertThat(updateTeacher).isEqualTo(teacher);
 
     }
 }

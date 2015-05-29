@@ -23,7 +23,7 @@ public class ClassRoomController {
     }
 
     @RequestMapping(value = "{classRoomId}", method = RequestMethod.GET)
-    public ClassRoom getClassRoom(@PathVariable Integer classRoomId){
+    public ClassRoom getClassRoom(@PathVariable String classRoomId){
         ClassRoom classRoom = classRoomRepository.findOne(classRoomId);
         if (classRoom == null){
             throw new ClassRoomNotFoundException(classRoomId);
@@ -39,7 +39,7 @@ public class ClassRoomController {
     }
 
     @RequestMapping(value = "/{classroomId}", method = RequestMethod.POST)
-    public void updateClassRoom(@RequestBody ClassRoom classRoom, @PathVariable Integer classroomId){
+    public void updateClassRoom(@RequestBody ClassRoom classRoom, @PathVariable String classroomId){
         ClassRoom oldClassroom = classRoomRepository.findOne(classroomId);
         oldClassroom.setId(classRoom.getId());
         oldClassroom.setNumber(classRoom.getNumber());
@@ -48,7 +48,7 @@ public class ClassRoomController {
     }
 
     @RequestMapping(value = "/{classroomId}", method = RequestMethod.DELETE)
-    public void removeClass(@PathVariable Integer classroomId) {
+    public void removeClass(@PathVariable String classroomId) {
         ClassRoom classRoom = getClassRoom(classroomId);
         classRoomRepository.delete(classRoom);
     }

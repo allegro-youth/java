@@ -74,9 +74,11 @@ public class LessonControllerTest {
         classRoomRepository.deleteAll();
         hourRepository.deleteAll();
 
-        teacherRepository.save(new Teacher(1, "Andrzej", "Gac", "AG"));
+        Teacher teacher = new Teacher("Andrzej", "Gac", "AG");
+        teacherRepository.save(teacher);
 
-        classRoomRepository.save(new ClassRoom(1, "CKP", 80));
+        ClassRoom classRoom = new ClassRoom("CKP", 80);
+        classRoomRepository.save(classRoom);
 
         hourRepository.save(new Hour(1, (time - 20), (time + 20)));
         hourRepository.save( new Hour(2, (time + 30), (time + 70)));
@@ -84,9 +86,9 @@ public class LessonControllerTest {
         classRepository.save( new Class(1, 2, 'k'));
         classRepository.save(new Class(2, 3, 'h'));
 
-        lessons.add(new Lesson(1, "Matematyka", "Mat", teacherRepository.findOne(1), classRepository.findOne(1), classRoomRepository.findOne(1), hourRepository.findOne(1)));
-        lessons.add(new Lesson(2, "J. Angielski", "ang",teacherRepository.findOne(1), classRepository.findOne(2), classRoomRepository.findOne(1), hourRepository.findOne(1)));
-        lessons.add(new Lesson(3, "J. Polski", "Pol", teacherRepository.findOne(1), classRepository.findOne(1), classRoomRepository.findOne(1), hourRepository.findOne(2)));
+        lessons.add(new Lesson(1, "Matematyka", "Mat", teacher, classRepository.findOne(1), classRoom, hourRepository.findOne(1)));
+        lessons.add(new Lesson(2, "J. Angielski", "ang",teacher, classRepository.findOne(2), classRoom, hourRepository.findOne(1)));
+        lessons.add(new Lesson(3, "J. Polski", "Pol", teacher, classRepository.findOne(1), classRoom, hourRepository.findOne(2)));
         lessonRepository.save(lessons);
 
 
