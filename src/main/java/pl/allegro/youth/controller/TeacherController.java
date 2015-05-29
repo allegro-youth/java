@@ -2,6 +2,7 @@ package pl.allegro.youth.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import pl.allegro.youth.exception.TeacherNotFoundException;
 import pl.allegro.youth.model.*;
@@ -23,16 +24,14 @@ public class TeacherController {
 
     @RequestMapping(value = "{teacherId}", method = RequestMethod.GET)
     public Teacher getTeacher(@PathVariable String teacherId) {
-
         Teacher teacher = teacherRepository.findOne(teacherId);
         if (teacher == null) {
             throw new TeacherNotFoundException(teacherId);
         }
-
         return teacher;
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void addTeacher(@RequestBody Teacher teacher){
         teacherRepository.save(teacher);

@@ -9,4 +9,5 @@ public class TeacherNotFoundException extends RuntimeException {
     public TeacherNotFoundException(String teacherId) {
         super(String.format("Teacher id %s not found", teacherId));
     }
+
 }

@@ -1,6 +1,5 @@
 package pl.allegro.youth.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -18,32 +17,25 @@ import java.util.List;
 public class LessonController {
 
     @Autowired
-
     private LessonService lessonService;
 
     @Autowired
     private LessonRepository lessonRepository;
 
-
     @RequestMapping(method = RequestMethod.GET)
     public List<Lesson> getLessons() {
-
         List<Lesson> lessons = lessonRepository.findAll();
-        lessons = lessonService.getOtherLessonsObjects(lessons);
-        return lessons;
+        return lessonService.getOtherLessonsObjects(lessons);
     }
 
     @RequestMapping(value = "{lessonId}", method = RequestMethod.GET)
     public Lesson getLesson(@PathVariable Integer lessonId) {
-
         Lesson lesson = lessonRepository.findOne(lessonId);
         if (lesson == null) {
             throw new LessonNotFoundException(lessonId);
         }
 
-        lesson = lessonService.getOtherLessonObjects(lesson);
-
-        return lesson;
+        return lessonService.getOtherLessonObjects(lesson);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
@@ -51,7 +43,6 @@ public class LessonController {
     public void addLesson(@RequestBody Lesson lesson) {
         lessonRepository.save(lesson);
     }
-
 
     @RequestMapping(value = "{lessonId}", method = RequestMethod.POST)
     public void updateLesson(@RequestBody Lesson lesson, @PathVariable Integer lessonId) {

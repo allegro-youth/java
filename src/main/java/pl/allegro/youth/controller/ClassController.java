@@ -48,7 +48,7 @@ public class ClassController {
 
     @RequestMapping(value = "/{classId}", method = RequestMethod.DELETE)
     public void removeClass(@PathVariable Integer classId){
-        Class aClass = classRepository.findOne(classId);
+        Class aClass = getClass(classId);
         classRepository.delete(aClass);
     }
 

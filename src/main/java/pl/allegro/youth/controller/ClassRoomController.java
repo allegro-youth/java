@@ -40,7 +40,7 @@ public class ClassRoomController {
 
     @RequestMapping(value = "/{classroomId}", method = RequestMethod.POST)
     public void updateClassRoom(@RequestBody ClassRoom classRoom, @PathVariable String classroomId){
-        ClassRoom oldClassroom = classRoomRepository.findOne(classroomId);
+        ClassRoom oldClassroom = getClassRoom(classroomId);
         oldClassroom.setId(classRoom.getId());
         oldClassroom.setNumber(classRoom.getNumber());
         oldClassroom.setBuilding(classRoom.getBuilding());
