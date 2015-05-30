@@ -56,7 +56,7 @@ public class HourController {
     public void addHour(@RequestBody Hour hour){
         hourRepository.save(hour);
     }
-
+    
     @RequestMapping(value = "/{hourId}",method = RequestMethod.POST)
     public void updateHour(@RequestBody Hour hour, @PathVariable Integer hourId){
         Hour oldHour = getHour(hourId);

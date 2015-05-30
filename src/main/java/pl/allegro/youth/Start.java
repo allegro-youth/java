@@ -4,13 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import pl.allegro.youth.controller.HourController;
 import pl.allegro.youth.model.*;
 import pl.allegro.youth.model.Class;
-
-import pl.allegro.youth.repository.*;
-import pl.allegro.youth.service.LessonService;
-
+import pl.allegro.youth.repository.HourRepository;
+import pl.allegro.youth.repository.LessonRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +48,10 @@ public class Start implements CommandLineRunner {
     public void run(String... args) throws Exception {
         messageRepository.deleteAll();
 
+        lessonRepository.deleteAll();
+
         hourRepository.deleteAll();
+
         List<Hour> hours = new ArrayList<>();
         hours.add(new Hour(1, 815, 900));
         hours.add(new Hour(2, 905, 950));
