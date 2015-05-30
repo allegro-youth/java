@@ -10,7 +10,7 @@
 
 .gradle/
 
-build
+build/
 *.iml
 *.ipr
 *.iws

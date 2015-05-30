@@ -75,6 +75,10 @@ public class Lesson {
     public Lesson() {
     }
 
+    public Lesson(Class aClass) {
+        this.aClass = aClass;
+    }
+
     public Lesson(Integer id, String name, String shortName, Teacher teacher, Class aClass, ClassRoom classRoom, Hour hour) {
         this.id = id;
         this.name = name;
