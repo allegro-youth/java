@@ -1,6 +1,5 @@
 package pl.allegro.youth.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -18,32 +17,24 @@ import java.util.List;
 public class LessonController {
 
     @Autowired
-
     private LessonService lessonService;
 
     @Autowired
     private LessonRepository lessonRepository;
 
-
     @RequestMapping(method = RequestMethod.GET)
     public List<Lesson> getLessons() {
-
         List<Lesson> lessons = lessonRepository.findAll();
-        lessons = lessonService.getOtherLessonsObjects(lessons);
-        return lessons;
+        return lessonService.getOtherLessonsObjects(lessons);
     }
 
     @RequestMapping(value = "{lessonId}", method = RequestMethod.GET)
     public Lesson getLesson(@PathVariable Integer lessonId) {
-
         Lesson lesson = lessonRepository.findOne(lessonId);
         if (lesson == null) {
             throw new LessonNotFoundException(lessonId);
         }
-
-        lesson = lessonService.getOtherLessonObjects(lesson);
-
-        return lesson;
+        return lessonService.getOtherLessonObjects(lesson);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
@@ -59,7 +50,7 @@ public class LessonController {
     }
 
     @RequestMapping(value = "/{lessonId}", method = RequestMethod.DELETE)
-    public void removeLesson(@PathVariable Integer lessonId){
+    public void removeLesson(@PathVariable Integer lessonId) {
         Lesson lesson = getLesson(lessonId);
         lessonRepository.delete(lessonId);
     }
@@ -71,16 +62,13 @@ public class LessonController {
 
 
     @RequestMapping(value = "/currentAndNext", method = RequestMethod.GET)
-    public List<List<Lesson>> getCurrentAndNextLessons(){
+    public List<List<Lesson>> getCurrentAndNextLessons() {
         return lessonService.getCurrentAndNextLessons();
-
     }
 
     @RequestMapping(value = "/next", method = RequestMethod.GET)
     public List<Lesson> getNextLessons() {
         return lessonService.getNextLessons();
     }
-
-
 
 }

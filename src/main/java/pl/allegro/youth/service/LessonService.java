@@ -36,14 +36,9 @@ public class LessonService {
         this.hourService = hourService;
     }
 
-
     public List<Lesson> getCurrentLessons() {
         Hour hour = hourService.getCurrentHour();
-
         return getLessonsByHour(hour);
-
-
-        // return null;
     }
 
     public List<List<Lesson>> getCurrentAndNextLessons() {
@@ -52,35 +47,29 @@ public class LessonService {
         List<List<Lesson>> lessonss = new ArrayList<>();
         List<Lesson> lessons;
         List<Class> classes = classRepository.findAll();
-
         for (Class aClass : classes) {
             lessons = new ArrayList<>();
             lessons.add(getLessonByHourAndClass(currentHour, aClass));
             lessons.add(getLessonByHourAndClass(nextHour,aClass));
             lessonss.add(lessons);
         }
-
         return lessonss;
     }
 
     public List<Lesson> getNextLessons() {
         Hour hour = hourService.getNextHour();
-
         if (hour != null) {
             return getLessonsByHour(hour);
         }
-
         return null;
     }
 
     private List<Lesson> getLessonsByHour(Hour hour) {
         List<Lesson> lessons = new ArrayList<>();
         List<Class> classes = classRepository.findAll();
-
         for (Class aClass : classes) {
             lessons.add(getLessonByHourAndClass(hour, aClass));
         }
-
         return lessons;
     }
 

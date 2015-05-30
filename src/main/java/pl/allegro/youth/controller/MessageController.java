@@ -1,6 +1,5 @@
 package pl.allegro.youth.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -25,11 +24,9 @@ public class MessageController {
     @RequestMapping(value = "/{messageId}", method = RequestMethod.GET)
     public Message getMessage(@PathVariable String messageId) {
         Message message = messageRepository.findOne(messageId);
-
         if (message == null) {
             throw new MessageNotFoundException(messageId);
         }
-
         return message;
     }
 

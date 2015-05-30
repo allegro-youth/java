@@ -24,7 +24,6 @@ import static com.jayway.restassured.RestAssured.expect;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Start.class)
 @WebAppConfiguration

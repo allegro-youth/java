@@ -11,7 +11,6 @@ import pl.allegro.youth.service.HourService;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/hour")
 public class HourController {
@@ -19,10 +18,8 @@ public class HourController {
     @Autowired
     private HourRepository hourRepository;
 
-
     @Autowired
     private HourService hourService;
-
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Hour> getHours(){
@@ -35,7 +32,6 @@ public class HourController {
         if (hour == null){
             throw new HourNotFoundException(hourNumber);
         }
-
         return hour;
     }
 
@@ -43,7 +39,6 @@ public class HourController {
     public void removeHour(@PathVariable Integer hourId){
         Hour hour = getHour(hourId);
         hourRepository.delete(hour);
-
     }
 
     @RequestMapping(value = "/current", method = RequestMethod.GET)
@@ -70,6 +65,5 @@ public class HourController {
         oldHour.setEnd(hour.getEnd());
         hourRepository.save(oldHour);
     }
-
 
 }
