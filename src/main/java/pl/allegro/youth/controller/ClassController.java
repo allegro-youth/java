@@ -17,14 +17,14 @@ public class ClassController {
     private ClassRepository classRepository;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Class> getClasses(){
+    public List<Class> getClasses() {
         return classRepository.findAll();
     }
 
     @RequestMapping(value = "{classId}", method = RequestMethod.GET)
-    public Class getClass(@PathVariable Integer classId){
+    public Class getClass(@PathVariable Integer classId) {
         Class aClass = classRepository.findOne(classId);
-        if (aClass == null){
+        if (aClass == null) {
             throw new ClassNotFoundException(classId);
         }
 
@@ -33,12 +33,12 @@ public class ClassController {
 
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.CREATED)
-    public void addClass(@RequestBody Class aClass){
+    public void addClass(@RequestBody Class aClass) {
         classRepository.save(aClass);
     }
 
     @RequestMapping(value = "/{classId}", method = RequestMethod.POST)
-    public void updateClass(@RequestBody Class aClass, @PathVariable Integer classId){
+    public void updateClass(@RequestBody Class aClass, @PathVariable Integer classId) {
         Class oldClass = getClass(classId);
         oldClass.setId(aClass.getId());
         oldClass.setType(aClass.getType());
@@ -47,7 +47,7 @@ public class ClassController {
     }
 
     @RequestMapping(value = "/{classId}", method = RequestMethod.DELETE)
-    public void removeClass(@PathVariable Integer classId){
+    public void removeClass(@PathVariable Integer classId) {
         Class aClass = classRepository.findOne(classId);
         classRepository.delete(aClass);
     }

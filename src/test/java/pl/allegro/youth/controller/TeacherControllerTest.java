@@ -1,6 +1,5 @@
 package pl.allegro.youth.controller;
 
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jayway.restassured.RestAssured;
@@ -17,15 +16,13 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import pl.allegro.youth.Start;
-import pl.allegro.youth.model.*;
+import pl.allegro.youth.model.Teacher;
 import pl.allegro.youth.repository.TeacherRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.jayway.restassured.RestAssured.expect;
-import static com.jayway.restassured.RestAssured.given;
-import static com.jayway.restassured.RestAssured.when;
+import static com.jayway.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 

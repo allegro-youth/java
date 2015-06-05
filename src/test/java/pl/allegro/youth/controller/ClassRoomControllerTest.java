@@ -97,8 +97,8 @@ public class ClassRoomControllerTest {
                 .when()
                 .put("/classroom");
 
-       // ClassRoom newClassroom = classRoomRepository.findOne(classRoom.getId());
-       // assertThat(newClassroom).isEqualTo(classRoom);
+        // ClassRoom newClassroom = classRoomRepository.findOne(classRoom.getId());
+        // assertThat(newClassroom).isEqualTo(classRoom);
     }
 
     @Test

@@ -4,10 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import pl.allegro.youth.model.*;
+import pl.allegro.youth.controller.HourController;
 import pl.allegro.youth.model.Class;
-import pl.allegro.youth.repository.HourRepository;
-import pl.allegro.youth.repository.LessonRepository;
+import pl.allegro.youth.model.*;
+import pl.allegro.youth.repository.*;
+import pl.allegro.youth.service.LessonService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,26 +110,26 @@ public class Start implements CommandLineRunner {
         classRoomRepository.save(classRoom);
 
         lessonRepository.deleteAll();
-        lessonRepository.save(new Lesson(1, "Matematyka", "Mat",    teachers.get(1), classRepository.findOne(1), classRoom, hourRepository.findOne(1)));
-        lessonRepository.save(new Lesson(2, "Informatyka", "Inf",   teachers.get(2), classRepository.findOne(2), classRoom, hourRepository.findOne(1)));
-        lessonRepository.save(new Lesson(3, "J. polski", "Jpo",     teachers.get(3), classRepository.findOne(3), classRoom, hourRepository.findOne(1)));
-        lessonRepository.save(new Lesson(4, "J. niemiecki", "Jni",  teachers.get(0), classRepository.findOne(4), classRoom, hourRepository.findOne(1)));
-        lessonRepository.save(new Lesson(5, "J. angielski", "Jan",  teachers.get(1), classRepository.findOne(5), classRoom, hourRepository.findOne(1)));
-        lessonRepository.save(new Lesson(6, "Historia", "His",      teachers.get(2), classRepository.findOne(6), classRoom, hourRepository.findOne(1)));
+        lessonRepository.save(new Lesson(1, "Matematyka", "Mat", teachers.get(1), classRepository.findOne(1), classRoom, hourRepository.findOne(1)));
+        lessonRepository.save(new Lesson(2, "Informatyka", "Inf", teachers.get(2), classRepository.findOne(2), classRoom, hourRepository.findOne(1)));
+        lessonRepository.save(new Lesson(3, "J. polski", "Jpo", teachers.get(3), classRepository.findOne(3), classRoom, hourRepository.findOne(1)));
+        lessonRepository.save(new Lesson(4, "J. niemiecki", "Jni", teachers.get(0), classRepository.findOne(4), classRoom, hourRepository.findOne(1)));
+        lessonRepository.save(new Lesson(5, "J. angielski", "Jan", teachers.get(1), classRepository.findOne(5), classRoom, hourRepository.findOne(1)));
+        lessonRepository.save(new Lesson(6, "Historia", "His", teachers.get(2), classRepository.findOne(6), classRoom, hourRepository.findOne(1)));
 
-        lessonRepository.save(new Lesson(7, "J. niemiecki", "Jni",  teachers.get(3), classRepository.findOne(1), classRoom, hourRepository.findOne(2)));
-        lessonRepository.save(new Lesson(8, "Historia", "His",      teachers.get(0), classRepository.findOne(2), classRoom, hourRepository.findOne(2)));
-        lessonRepository.save(new Lesson(9, "J. angielski", "Jan",  teachers.get(1), classRepository.findOne(3), classRoom, hourRepository.findOne(2)));
-        lessonRepository.save(new Lesson(10, "Matematyka", "Mat",   teachers.get(2), classRepository.findOne(4), classRoom, hourRepository.findOne(2)));
-        lessonRepository.save(new Lesson(11, "J. polski", "Jpo",    teachers.get(3), classRepository.findOne(5), classRoom, hourRepository.findOne(2)));
-        lessonRepository.save(new Lesson(12, "Informatyka", "Inf",  teachers.get(0), classRepository.findOne(6), classRoom, hourRepository.findOne(2)));
+        lessonRepository.save(new Lesson(7, "J. niemiecki", "Jni", teachers.get(3), classRepository.findOne(1), classRoom, hourRepository.findOne(2)));
+        lessonRepository.save(new Lesson(8, "Historia", "His", teachers.get(0), classRepository.findOne(2), classRoom, hourRepository.findOne(2)));
+        lessonRepository.save(new Lesson(9, "J. angielski", "Jan", teachers.get(1), classRepository.findOne(3), classRoom, hourRepository.findOne(2)));
+        lessonRepository.save(new Lesson(10, "Matematyka", "Mat", teachers.get(2), classRepository.findOne(4), classRoom, hourRepository.findOne(2)));
+        lessonRepository.save(new Lesson(11, "J. polski", "Jpo", teachers.get(3), classRepository.findOne(5), classRoom, hourRepository.findOne(2)));
+        lessonRepository.save(new Lesson(12, "Informatyka", "Inf", teachers.get(0), classRepository.findOne(6), classRoom, hourRepository.findOne(2)));
 
-        lessonRepository.save(new Lesson(13, "J. polski", "Jpo",    teachers.get(2), classRepository.findOne(1), classRoom, hourRepository.findOne(3)));
-        lessonRepository.save(new Lesson(14, "Historia", "His",     teachers.get(3), classRepository.findOne(2), classRoom, hourRepository.findOne(3)));
+        lessonRepository.save(new Lesson(13, "J. polski", "Jpo", teachers.get(2), classRepository.findOne(1), classRoom, hourRepository.findOne(3)));
+        lessonRepository.save(new Lesson(14, "Historia", "His", teachers.get(3), classRepository.findOne(2), classRoom, hourRepository.findOne(3)));
         lessonRepository.save(new Lesson(15, "J. niemiecki", "Jni", teachers.get(0), classRepository.findOne(3), classRoom, hourRepository.findOne(3)));
-        lessonRepository.save(new Lesson(16, "Informatyka", "Inf",  teachers.get(1), classRepository.findOne(4), classRoom, hourRepository.findOne(3)));
+        lessonRepository.save(new Lesson(16, "Informatyka", "Inf", teachers.get(1), classRepository.findOne(4), classRoom, hourRepository.findOne(3)));
         lessonRepository.save(new Lesson(17, "J. angielski", "Jan", teachers.get(2), classRepository.findOne(5), classRoom, hourRepository.findOne(3)));
-        lessonRepository.save(new Lesson(18, "Matematyka", "Mat",   teachers.get(3), classRepository.findOne(6), classRoom, hourRepository.findOne(3)));
+        lessonRepository.save(new Lesson(18, "Matematyka", "Mat", teachers.get(3), classRepository.findOne(6), classRoom, hourRepository.findOne(3)));
 
         /*
         // fetch all lessons

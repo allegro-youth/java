@@ -4,14 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.allegro.youth.exception.TeacherNotFoundException;
-import pl.allegro.youth.model.*;
-import pl.allegro.youth.model.Class;
+import pl.allegro.youth.model.Teacher;
 import pl.allegro.youth.repository.TeacherRepository;
-
-import javax.websocket.server.PathParam;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 
 import java.util.List;
 
@@ -23,7 +17,7 @@ public class TeacherController {
     private TeacherRepository teacherRepository;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Teacher> getTeachers(){
+    public List<Teacher> getTeachers() {
         return teacherRepository.findAll();
     }
 
@@ -40,18 +34,18 @@ public class TeacherController {
 
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.CREATED)
-    public void addTeacher(@RequestBody Teacher teacher){
+    public void addTeacher(@RequestBody Teacher teacher) {
         teacherRepository.save(teacher);
     }
 
     @RequestMapping(value = "/{teacherId}", method = RequestMethod.DELETE)
-    public void removeTeacher(@PathVariable String teacherId){
+    public void removeTeacher(@PathVariable String teacherId) {
         Teacher teacher = getTeacher(teacherId);
         teacherRepository.delete(teacher);
     }
 
     @RequestMapping(value = "/{teacherId}", method = RequestMethod.POST)
-    public void updateTeacher(@RequestBody Teacher teacher, @PathVariable String teacherId){
+    public void updateTeacher(@RequestBody Teacher teacher, @PathVariable String teacherId) {
         Teacher oldTeacher = getTeacher(teacherId);
         oldTeacher.setId(teacher.getId());
         oldTeacher.setFirstName(teacher.getFirstName());

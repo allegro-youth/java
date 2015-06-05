@@ -5,9 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
-import jdk.nashorn.internal.runtime.regexp.joni.Matcher;
 import org.apache.http.HttpStatus;
-import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,18 +17,15 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import pl.allegro.youth.Start;
-import pl.allegro.youth.model.*;
 import pl.allegro.youth.model.Class;
+import pl.allegro.youth.model.*;
 import pl.allegro.youth.repository.*;
-
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.jayway.restassured.RestAssured.expect;
-import static com.jayway.restassured.RestAssured.given;
-import static com.jayway.restassured.RestAssured.when;
+import static com.jayway.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
@@ -81,13 +76,13 @@ public class LessonControllerTest {
         classRoomRepository.save(classRoom);
 
         hourRepository.save(new Hour(1, (time - 20), (time + 20)));
-        hourRepository.save( new Hour(2, (time + 30), (time + 70)));
+        hourRepository.save(new Hour(2, (time + 30), (time + 70)));
 
-        classRepository.save( new Class(1, 2, 'k'));
+        classRepository.save(new Class(1, 2, 'k'));
         classRepository.save(new Class(2, 3, 'h'));
 
         lessons.add(new Lesson(1, "Matematyka", "Mat", teacher, classRepository.findOne(1), classRoom, hourRepository.findOne(1)));
-        lessons.add(new Lesson(2, "J. Angielski", "ang",teacher, classRepository.findOne(2), classRoom, hourRepository.findOne(1)));
+        lessons.add(new Lesson(2, "J. Angielski", "ang", teacher, classRepository.findOne(2), classRoom, hourRepository.findOne(1)));
         lessons.add(new Lesson(3, "J. Polski", "Pol", teacher, classRepository.findOne(1), classRoom, hourRepository.findOne(2)));
         lessonRepository.save(lessons);
 

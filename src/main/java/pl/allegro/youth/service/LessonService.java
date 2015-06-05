@@ -6,8 +6,9 @@ import pl.allegro.youth.controller.ClassController;
 import pl.allegro.youth.controller.ClassRoomController;
 import pl.allegro.youth.controller.HourController;
 import pl.allegro.youth.controller.TeacherController;
-import pl.allegro.youth.model.*;
 import pl.allegro.youth.model.Class;
+import pl.allegro.youth.model.Hour;
+import pl.allegro.youth.model.Lesson;
 import pl.allegro.youth.repository.ClassRepository;
 import pl.allegro.youth.repository.LessonRepository;
 
@@ -50,7 +51,7 @@ public class LessonService {
         for (Class aClass : classes) {
             lessons = new ArrayList<>();
             lessons.add(getLessonByHourAndClass(currentHour, aClass));
-            lessons.add(getLessonByHourAndClass(nextHour,aClass));
+            lessons.add(getLessonByHourAndClass(nextHour, aClass));
             lessonss.add(lessons);
         }
         return lessonss;

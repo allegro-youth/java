@@ -1,14 +1,12 @@
 package pl.allegro.youth.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.allegro.youth.exception.LessonNotFoundException;
 import pl.allegro.youth.model.Lesson;
 import pl.allegro.youth.repository.LessonRepository;
 import pl.allegro.youth.service.LessonService;
-
 
 import java.util.List;
 

@@ -21,8 +21,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static com.jayway.restassured.RestAssured.expect;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
