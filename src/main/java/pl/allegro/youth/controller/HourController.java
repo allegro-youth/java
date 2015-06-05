@@ -11,7 +11,7 @@ import pl.allegro.youth.service.HourService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/hour")
+@RequestMapping("/hours")
 public class HourController {
 
     @Autowired

@@ -37,6 +37,11 @@ public class LessonService {
         this.hourService = hourService;
     }
 
+    public List<Lesson> getAllLessons() {
+        List<Lesson> lessons = lessonRepository.findAll();
+        return getOtherLessonsObjects(lessons);
+    }
+
     public List<Lesson> getCurrentLessons() {
         Hour hour = hourService.getCurrentHour();
         return getLessonsByHour(hour);

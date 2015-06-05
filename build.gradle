@@ -27,8 +27,11 @@ targetCompatibility = 1.8
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
-    compile ("org.springframework.data:spring-data-mongodb:1.7.0.RELEASE")
+    compile("org.springframework.data:spring-data-mongodb:1.7.0.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-test:1.2.3.RELEASE")
+    testCompile 'com.google.code.gson:gson:2.3.1'
     testCompile 'org.assertj:assertj-core:2.0.0'
+    testCompile 'com.jayway.restassured:rest-assured:2.4.1'
     testCompile("junit:junit")
 }
 

@@ -10,7 +10,7 @@ import pl.allegro.youth.repository.MessageRepository;
 import java.util.List;
 
 @RestController
-@RequestMapping("/message")
+@RequestMapping("/messages")
 public class MessageController {
 
     @Autowired

@@ -5,13 +5,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.allegro.youth.exception.LessonNotFoundException;
 import pl.allegro.youth.model.Lesson;
+import pl.allegro.youth.repository.AbsenceRepository;
 import pl.allegro.youth.repository.LessonRepository;
 import pl.allegro.youth.service.LessonService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/lesson")
+@RequestMapping("/lessons")
 public class LessonController {
 
     @Autowired
@@ -20,10 +21,12 @@ public class LessonController {
     @Autowired
     private LessonRepository lessonRepository;
 
+    @Autowired
+    private AbsenceRepository absenceRepository;
+
     @RequestMapping(method = RequestMethod.GET)
-    public List<Lesson> getLessons() {
-        List<Lesson> lessons = lessonRepository.findAll();
-        return lessonService.getOtherLessonsObjects(lessons);
+    public List<Lesson> getLessons(){
+        return lessonService.getAllLessons();
     }
 
     @RequestMapping(value = "{lessonId}", method = RequestMethod.GET)

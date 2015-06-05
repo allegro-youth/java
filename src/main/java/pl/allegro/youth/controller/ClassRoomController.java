@@ -10,7 +10,7 @@ import pl.allegro.youth.repository.ClassRoomRepository;
 import java.util.List;
 
 @RestController
-@RequestMapping("/classroom")
+@RequestMapping("/classrooms")
 public class ClassRoomController {
 
     @Autowired
