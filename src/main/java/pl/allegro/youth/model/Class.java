@@ -48,6 +48,10 @@ public class Class {
         this.id = id;
     }
 
+    public String showClassName() {
+        return String.valueOf(number) + type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

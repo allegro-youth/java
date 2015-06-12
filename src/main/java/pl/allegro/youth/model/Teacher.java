@@ -15,7 +15,7 @@ public class Teacher {
     public Teacher() {
     }
 
-    public Teacher(String shortName, String firstName, String lastName) {
+    public Teacher(String firstName, String lastName, String shortName) {
         this.shortName = shortName;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -51,6 +51,10 @@ public class Teacher {
 
     public void setShortName(String shortName) {
         this.shortName = shortName;
+    }
+
+    public String showFullName () {
+        return String.format("%s %s", firstName, lastName);
     }
 
     @Override

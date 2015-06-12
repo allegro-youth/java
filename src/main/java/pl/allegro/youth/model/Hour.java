@@ -11,6 +11,19 @@ public class Hour {
     private int start;
     private int end;
 
+    public Hour() {
+    }
+
+    public Hour(int number) {
+        this.number = number;
+    }
+
+    public Hour(int number, int start, int end) {
+        this.number = number;
+        this.start = start;
+        this.end = end;
+    }
+
     public int getNumber() {
         return number;
     }
@@ -35,18 +48,23 @@ public class Hour {
         this.end = end;
     }
 
-    public Hour() {
+    public String showHours(){
+        return String.format("%s - %s", convertHour(start), convertHour(end));
     }
 
-    public Hour(int number) {
-        this.number = number;
+    private String convertHour(int hour) {
+        String start;
+        String startMin;
+        if (hour < 1000) {
+            start = String.valueOf(hour).substring(0, 1);
+            startMin = String.valueOf(hour).substring(1);
+        } else {
+            start = String.valueOf(hour).substring(0, 2);
+            startMin = String.valueOf(hour).substring(2);
+        }
+        return String.format("%s:%s", start, startMin);
     }
 
-    public Hour(int number, int start, int end) {
-        this.number = number;
-        this.start = start;
-        this.end = end;
-    }
 
     @Override
     public boolean equals(Object o) {

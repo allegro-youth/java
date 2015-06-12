@@ -11,6 +11,20 @@ public class Absence {
     private Lesson lesson;
     private String info;
 
+    public Absence(Lesson lesson, String info) {
+        this.info = info;
+        this.lesson = lesson;
+    }
+
+    public Absence() {
+    }
+
+    public Absence(String id, Lesson lesson, String info) {
+        this.id = id;
+        this.lesson = lesson;
+        this.info = info;
+    }
+
     public String getId() {
         return id;
     }
