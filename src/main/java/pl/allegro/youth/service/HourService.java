@@ -38,4 +38,8 @@ public class HourService {
         }
         return null;
     }
+
+    public Integer countHours(Hour hour, Integer workingHours) {
+        return hour.getEnd() - hour.getStart() / (workingHours - hour.getNumber());
+    }
 }

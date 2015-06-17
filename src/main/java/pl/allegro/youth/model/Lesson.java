@@ -89,35 +89,6 @@ public class Lesson {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Lesson lesson = (Lesson) o;
-
-        if (!id.equals(lesson.id)) return false;
-        if (!name.equals(lesson.name)) return false;
-        if (!shortName.equals(lesson.shortName)) return false;
-        if (!teacher.equals(lesson.teacher)) return false;
-        if (!aClass.equals(lesson.aClass)) return false;
-        if (!classRoom.equals(lesson.classRoom)) return false;
-        return hour.equals(lesson.hour);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + name.hashCode();
-        result = 31 * result + shortName.hashCode();
-        result = 31 * result + teacher.hashCode();
-        result = 31 * result + aClass.hashCode();
-        result = 31 * result + classRoom.hashCode();
-        result = 31 * result + hour.hashCode();
-        return result;
-    }
-
-    @Override
     public String toString() {
         return "Lesson{" +
                 "id=" + id +
