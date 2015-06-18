@@ -35,8 +35,8 @@ public class ClassRoom {
         this.number = number;
     }
 
-    public String showRoom() {
-        return String.format("%d [%s]", number, building);
+    public String showNumber(){
+        return String.valueOf(number);
     }
 
     public ClassRoom() {

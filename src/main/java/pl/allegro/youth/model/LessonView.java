@@ -5,6 +5,7 @@ public class LessonView {
     private String lesson;
     private String teacher;
     private String aClass;
+    private String building;
     private String classRoom;
     private String hours;
     private String info;
@@ -12,9 +13,9 @@ public class LessonView {
 
 
     public String getLesson() {
-
         return lesson;
     }
+
 
     public void setLesson(String lesson) {
         this.lesson = lesson;
@@ -44,6 +45,14 @@ public class LessonView {
         this.classRoom = classRoom;
     }
 
+    public String getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(String building) {
+        this.building = building;
+    }
+
     public String getHours() {
         return hours;
     }
@@ -67,14 +76,14 @@ public class LessonView {
 
         LessonView that = (LessonView) o;
 
-        if (aClass != null ? !aClass.equals(that.aClass) : that.aClass != null) return false;
-        if (classRoom != null ? !classRoom.equals(that.classRoom) : that.classRoom != null) return false;
-        if (hours != null ? !hours.equals(that.hours) : that.hours != null) return false;
-        if (info != null ? !info.equals(that.info) : that.info != null) return false;
         if (lesson != null ? !lesson.equals(that.lesson) : that.lesson != null) return false;
         if (teacher != null ? !teacher.equals(that.teacher) : that.teacher != null) return false;
+        if (aClass != null ? !aClass.equals(that.aClass) : that.aClass != null) return false;
+        if (building != null ? !building.equals(that.building) : that.building != null) return false;
+        if (classRoom != null ? !classRoom.equals(that.classRoom) : that.classRoom != null) return false;
+        if (hours != null ? !hours.equals(that.hours) : that.hours != null) return false;
+        return !(info != null ? !info.equals(that.info) : that.info != null);
 
-        return true;
     }
 
     @Override
@@ -82,6 +91,7 @@ public class LessonView {
         int result = lesson != null ? lesson.hashCode() : 0;
         result = 31 * result + (teacher != null ? teacher.hashCode() : 0);
         result = 31 * result + (aClass != null ? aClass.hashCode() : 0);
+        result = 31 * result + (building != null ? building.hashCode() : 0);
         result = 31 * result + (classRoom != null ? classRoom.hashCode() : 0);
         result = 31 * result + (hours != null ? hours.hashCode() : 0);
         result = 31 * result + (info != null ? info.hashCode() : 0);
@@ -94,10 +104,10 @@ public class LessonView {
                 "lesson='" + lesson + '\'' +
                 ", teacher='" + teacher + '\'' +
                 ", aClass='" + aClass + '\'' +
+                ", building='" + building + '\'' +
                 ", classRoom='" + classRoom + '\'' +
                 ", hours='" + hours + '\'' +
                 ", info='" + info + '\'' +
                 '}';
     }
-
 }

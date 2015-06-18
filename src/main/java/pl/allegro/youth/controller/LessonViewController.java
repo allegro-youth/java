@@ -18,8 +18,13 @@ public class LessonViewController {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<LessonView> getAllLessons() {
-        return lessonViewService.preparedLessons();
+        return lessonViewService.showAllLessons();
 
+    }
+
+    @RequestMapping(value = "/current", method = RequestMethod.GET)
+    public List<LessonView> getCurrentLessons(){
+        return lessonViewService.showCurrentLessons();
     }
 
 }
