@@ -16,4 +16,4 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'Projekt allegro'
+rootProject.name = 'allegro.youth'
