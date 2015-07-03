@@ -15,7 +15,7 @@ import pl.allegro.youth.Start
 import spock.lang.Shared
 import spock.lang.Specification
 
-@ContextConfiguration(loader = SpringApplicationContextLoader, classes = Start)
+@ContextConfiguration(loader = SpringApplicationContextLoader, classes = Start.class)
 @IntegrationTest
 @ActiveProfiles("integration")
 @WebAppConfiguration

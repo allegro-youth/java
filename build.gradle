@@ -43,9 +43,10 @@ dependencies {
     compile group: 'org.springframework.data',   name: 'spring-data-mongodb',                     version: '1.7.0.RELEASE'
     compile group: 'javax.ws.rs',                name: 'javax.ws.rs-api',                         version: '2.0.1'
 
-    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test',       version: '1.2.3.RELEASE'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.2.3.RELEASE'
     testCompile group: 'org.spockframework',       name: 'spock-spring',             version: '1.0-groovy-2.4'
     testCompile group: 'com.github.tomakehurst',   name: 'wiremock',                 version: '1.53'
+    testcompile group: 'com.github.fakemongo',     name: 'fongo',                    version: '2.0.1'
     testCompile 'com.google.code.gson:gson:2.3.1'
     testCompile 'org.assertj:assertj-core:2.0.0'
     testCompile 'com.jayway.restassured:rest-assured:2.4.1'

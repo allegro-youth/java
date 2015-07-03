@@ -1,8 +1,12 @@
 package pl.allegro.youth.controller
 
+import org.mockito.Mockito
+import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpMethod
+import org.springframework.util.MultiValueMap
 import pl.allegro.youth.IntegrationSpecification
 import pl.allegro.youth.model.Teacher
+import pl.allegro.youth.repository.TeacherRepository
 
 import javax.ws.rs.core.Response
 
@@ -15,6 +19,8 @@ class TeacherControllerSpec extends IntegrationSpecification {
 
     private static final String TEACHER_ID = "5596322056906d896addbaa1";
 
+    def mock = Mockito.mock(TeacherRepository.class)
+
     def "should return teacher list"() {
         given:
         stubFor(get(
@@ -24,6 +30,7 @@ class TeacherControllerSpec extends IntegrationSpecification {
                 .withStatus(Response.Status.OK.statusCode))
         )
     }
+
 
     def "should return teacher by id"() {
         given:
@@ -39,7 +46,6 @@ class TeacherControllerSpec extends IntegrationSpecification {
         then:
         result.statusCode.value() == Response.Status.OK.statusCode
     }
-
 
 
 }
