@@ -7,6 +7,10 @@ import pl.allegro.youth.exception.AbsenceNotFoundException;
 import pl.allegro.youth.model.Absence;
 import pl.allegro.youth.repository.AbsenceRepository;
 
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
 import java.util.List;
 
 @RestController
@@ -21,8 +25,8 @@ public class AbsenceController {
         return absenceRepository.findAll();
     }
 
-    @RequestMapping(value = "{absenceId}", method = RequestMethod.GET)
-    public Absence getAbsence(@PathVariable String absenceId) {
+    @RequestMapping(value = "/{absenceId}", method = RequestMethod.GET)
+        public Absence getAbsence(@PathVariable String absenceId) {
 
         Absence absence = absenceRepository.findOne(absenceId);
         if (absence == null) {
@@ -38,13 +42,13 @@ public class AbsenceController {
         absenceRepository.save(absence);
     }
 
-    @RequestMapping(value = "/{absenceId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{absenceId}", method = RequestMethod.DELETE)
     public void removeAbsence(@PathVariable String absenceId) {
         Absence absence = getAbsence(absenceId);
         absenceRepository.delete(absence);
     }
 
-    @RequestMapping(value = "/{absenceId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{absenceId}")
     public void updateTeacher(@RequestBody Absence absence, @PathVariable String absenceId) {
         Absence oldAbsence = getAbsence(absenceId);
         oldAbsence.setInfo(absence.getInfo());

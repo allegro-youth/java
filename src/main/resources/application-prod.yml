@@ -1,0 +1,7 @@
+zookeeper:
+  enabled: true
+  connectionString: zookeeper.qxlint:2181
+
+discovery:
+  enabled: true
+  register: true

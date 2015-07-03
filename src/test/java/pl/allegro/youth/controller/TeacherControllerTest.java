@@ -1,3 +1,4 @@
+/*
 package pl.allegro.youth.controller;
 
 import com.google.gson.Gson;
@@ -70,7 +71,7 @@ public class TeacherControllerTest {
                 .contentType(ContentType.JSON)
                 .body(teacher)
                 .when()
-                .put("/teacher")
+                .put("/teachers")
                 .then()
                 .statusCode(HttpStatus.SC_CREATED);
     }
@@ -78,7 +79,7 @@ public class TeacherControllerTest {
     @Test
     public void shouldReturnTeachersList() throws Exception {
         when()
-                .get("/teacher")
+                .get("/teachers")
                 .as(Teacher[].class);
     }
 
@@ -87,7 +88,7 @@ public class TeacherControllerTest {
         expect()
                 .body(equalTo(gson.toJson(teachers.get(1))))
                 .when()
-                .get("/teacher/{teacherId}", teachers.get(1).getId());
+                .get("/teachers/{teacherId}", teachers.get(1).getId());
     }
 
     @Test
@@ -95,7 +96,7 @@ public class TeacherControllerTest {
         Integer notExistId = 5;
 
         when()
-                .get("/teacher/{teacherId}", notExistId)
+                .get("/teachers/{teacherId}", notExistId)
                 .then()
                 .statusCode(HttpStatus.SC_NOT_FOUND)
                 .body("message", equalTo(String.format("Teacher id %d not found", notExistId)));
@@ -105,7 +106,7 @@ public class TeacherControllerTest {
     @Test
     public void shouldRemoveTeacherById() throws Exception {
         when()
-                .delete("/teacher/{teacherId}", teachers.get(1).getId())
+                .delete("/teachers/{teacherId}", teachers.get(1).getId())
                 .then()
                 .statusCode(HttpStatus.SC_OK);
 
@@ -126,10 +127,10 @@ public class TeacherControllerTest {
                 .contentType(ContentType.JSON)
                 .body(teacher)
                 .when()
-                .post("/teacher/{teacherId}", teacher.getId());
+                .post("/teachers/{teacherId}", teacher.getId());
 
         Teacher updateTeacher = teacherRepository.findOne(teacher.getId());
         assertThat(updateTeacher).isEqualTo(teacher);
 
     }
-}
+}*/

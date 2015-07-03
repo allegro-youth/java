@@ -1,0 +1,8 @@
+zookeeper:
+  enabled: false
+
+discovery:
+  enabled: false
+
+
+metadata.cloud.skipReading: true

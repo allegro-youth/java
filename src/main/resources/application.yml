@@ -1,0 +1,14 @@
+application.name: allegro-youth
+
+server:
+  servlet-path: /
+
+management:
+  context-path: /
+
+spring:
+  jersey:
+    type: servlet
+
+metadata.cloud:
+  skipReading: false

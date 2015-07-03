@@ -1,3 +1,4 @@
+/*
 package pl.allegro.youth.controller;
 
 
@@ -68,7 +69,7 @@ public class MessageControllerTest {
                 .statusCode(HttpStatus.SC_OK)
                 .body(equalTo(gson.toJson(messages)))
                 .when()
-                .get("/message");
+                .get("/messages");
 
     }
 
@@ -79,7 +80,7 @@ public class MessageControllerTest {
                 .statusCode(HttpStatus.SC_OK)
                 .body(equalTo(gson.toJson(message)))
                 .when()
-                .get("/message/{messageId}", message.getId());
+                .get("/messages/{messageId}", message.getId());
     }
 
     @Test
@@ -90,7 +91,7 @@ public class MessageControllerTest {
                 .statusCode(HttpStatus.SC_NOT_FOUND)
                 .body("message", equalTo(String.format("Message id %s not found.", notExistId)))
                 .when()
-                .get("/message/{messageId}", notExistId);
+                .get("/messages/{messageId}", notExistId);
     }
 
     @Test
@@ -104,7 +105,7 @@ public class MessageControllerTest {
                 .contentType(ContentType.JSON)
                 .body(message)
                 .when()
-                .put("/message");
+                .put("/messages");
     }
 
     @Test
@@ -115,7 +116,7 @@ public class MessageControllerTest {
                 .statusCode(HttpStatus.SC_OK)
                 .body(equalTo(""))
                 .when()
-                .delete("/message/{messageId}", message.getId());
+                .delete("/messages/{messageId}", message.getId());
 
         Message removeMessage = messageRepository.findOne(message.getId());
         assertThat(removeMessage).isNull();
@@ -133,9 +134,9 @@ public class MessageControllerTest {
                 .contentType(ContentType.JSON)
                 .body(message)
                 .when()
-                .post("/message/{messageId}", message.getId());
+                .post("/messages/{messageId}", message.getId());
 
         Message updateMessage = messageRepository.findOne(message.getId());
         assertThat(updateMessage).isEqualTo(message);
     }
-}
+}*/

@@ -1,0 +1,10 @@
+zookeeper:
+  enabled: true
+  connectionString: zookeeper-dev.qxlint:2181
+
+discovery:
+  enabled: true
+  register: true
+
+metadata.cloud:
+  skipReading: true

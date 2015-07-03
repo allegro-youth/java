@@ -1,40 +1,61 @@
 buildscript {
     repositories {
+        maven { url 'https://nexus.allegrogroup.com/nexus/content/repositories/allegro.pl.release' }
+        maven { url 'https://nexus.allegrogroup.com/nexus/content/repositories/allegro.pl.snapshot' }
         mavenLocal()
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
+        classpath group: 'pl.allegro.tech.build', name: 'axion-gradle-plugin',  version: '0.1.13'
     }
 }
 
 apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'spring-boot'
+apply plugin: 'groovy'
+apply plugin: 'maven-publish'
+apply plugin: 'maven'
+apply plugin: 'application'
+
+apply plugin: 'axion'
+
 
 jar {
-    baseName = 'gs-rest-service'
+    baseName = 'allegro-youth'
     version =  '0.1.0'
 }
 
 repositories {
+    maven { url 'https://nexus.allegrogroup.com/nexus/content/repositories/allegro.pl.release' }
+    maven { url 'https://nexus.allegrogroup.com/nexus/content/repositories/allegro.pl.snapshot' }
     mavenLocal()
     mavenCentral()
 }
 
+project.group = 'pl.allegro.youth'
+project.version = '0.1.0'
+
 sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.data:spring-data-mongodb:1.7.0.RELEASE")
-    compile("org.springframework.boot:spring-boot-starter-test:1.2.3.RELEASE")
+    compile group: 'pl.allegro.tech.common',     name: 'spring-boot-starter-andamio',             version: '0.9.14'
+    compile group: 'org.springframework.boot',   name: 'spring-boot-starter-web',                 version: '1.2.4.RELEASE'
+    compile group: 'org.springframework.boot',   name: 'spring-boot-starter-jersey',              version: '1.2.4.RELEASE'
+    compile group: 'org.springframework.data',   name: 'spring-data-mongodb',                     version: '1.7.0.RELEASE'
+    compile group: 'javax.ws.rs',                name: 'javax.ws.rs-api',                         version: '2.0.1'
+
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test',       version: '1.2.3.RELEASE'
+    testCompile group: 'org.spockframework',       name: 'spock-spring',             version: '1.0-groovy-2.4'
+    testCompile group: 'com.github.tomakehurst',   name: 'wiremock',                 version: '1.53'
     testCompile 'com.google.code.gson:gson:2.3.1'
     testCompile 'org.assertj:assertj-core:2.0.0'
     testCompile 'com.jayway.restassured:rest-assured:2.4.1'
     testCompile("junit:junit")
 }
 
+mainClassName = 'pl.allegro.youth.Start'
+
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
+
+test.dependsOn integrationTest
